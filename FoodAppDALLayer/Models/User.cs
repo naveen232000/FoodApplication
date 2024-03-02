@@ -16,7 +16,7 @@ namespace FoodAppDALLayer.Models
 
         [Required, StringLength(100), Index(IsUnique = true)]
         public string UserName { get; set; }
-        [Required, EmailAddress, Index(IsUnique = true)]
+        [Required, EmailAddress, StringLength(100),Index(IsUnique = true)]
         public string Email { get; set; }
         [Required, Phone, RegularExpression(@"^(+\d{1, 3}
     [- ]?)?\d{10}$", ErrorMessage = "Not a valid phone number")]

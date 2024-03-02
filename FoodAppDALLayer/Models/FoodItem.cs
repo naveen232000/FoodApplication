@@ -13,14 +13,19 @@ namespace FoodAppDALLayer.Models
         [Key]
         [Required]
         public int FoodId { get; set; }
+
         [Required, StringLength(100)]
         public string Name { get; set; }
 
         public byte[] Image { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
-        [Required, ForeignKey("Restaurant")]
+
+        [Required]
         public int RestId { get; set; }
+        [ForeignKey("RestId")]
+        public virtual Restaurant Restaurant { get; set; }
+
         [Required, DataType(DataType.Currency)]
 
         public decimal Price { get; set; }

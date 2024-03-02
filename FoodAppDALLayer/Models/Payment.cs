@@ -14,10 +14,14 @@ namespace FoodAppDALLayer.Models
         public int PaymentId { get; set; }
         [Required]
         public string PaymentType { get; set; }
-        [Required, ForeignKey("Restaurant")]
+        [Required]
         public int RestId { get; set; }
-        [Required, ForeignKey("Orders")]
+        [ForeignKey("RestId")]
+        public virtual Restaurant Restaurant { get; set; }
+        [Required]
         public int OrderId { get; set; }
+        [ForeignKey("OrderId")]
+        public virtual Order Order { get; set; }
         [Required, DataType(DataType.Currency)]
         public decimal TotalAmount { get; set; }
         [Required]

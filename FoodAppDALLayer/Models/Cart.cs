@@ -10,14 +10,23 @@ namespace FoodAppDALLayer.Models
 {
     public class Cart
     {
-        [Required]
+        [Key,Required]
         public int CartId { get; set; }
-        [Required, ForeignKey("FoodItem")]
+
+        [Required]
         public int FoodId { get; set; }
-        [Required, ForeignKey("User")]
+        [ForeignKey("FoodId")]
+        public virtual FoodItem FoodItem { get; set; }
+
+        [Required ]
         public int UserId { get; set; }
-        [Required, ForeignKey("Restaurant")]
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
+
+        [Required]
         public int RestId { get; set; }
- 
+        [ForeignKey("RestId")]
+        public virtual Restaurant Restaurant { get; set; }
+      
     }
 }

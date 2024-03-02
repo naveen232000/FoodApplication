@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace FoodAppDALLayer.Models
 {
-    public class Orders
+    public class Order
     {
         [Key, Required]
         public int OrderId { get; set; }
-        [Required, ForeignKey("FoodItem")]
+        [Required]
         public int FoodId { get; set; }
+        [ForeignKey("FoodId")]
+        public virtual FoodItem FoodItem { get; set; }
         [Required]
         public int Qty { get; set; }
         [Required, DataType(DataType.Currency)]
@@ -24,8 +26,10 @@ namespace FoodAppDALLayer.Models
         public decimal DeliveryCharge { get; set; }
         [Required]
         public string OrderStatus { get; set; }
-        [Required, ForeignKey("Payment")]
+        [Required]
         public int PaymentId { get; set; }
+        [ForeignKey("PaymentId")]
+        public virtual Payment Payment { get; set; }
         [Required]
         public DateTime EstimatedDeliveryTime { get; set; }
         [Required]

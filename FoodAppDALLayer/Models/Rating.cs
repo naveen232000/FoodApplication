@@ -12,13 +12,14 @@ namespace FoodAppDALLayer.Models
     {
         [Key, Required]
         public int RatingId { get; set; }
-        [Required, ForeignKey("FoodItem")
-]
+        [Required]
         public int FoodId { get; set; }
-        [Required, ForeignKey("User")
-]
+        [ForeignKey("FoodId")]
+        public virtual FoodItem FoodItem { get; set; }
+        [Required]
         public int UserId { get; set; }
-        
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
         public bool Like { get; set; }
         [Required]
         public string Comments { get; set; }
