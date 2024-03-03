@@ -14,19 +14,21 @@ namespace FoodAppDALLayer.ApplicationDbContext
         {
             
         }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<Cart> Carts { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>()
-                .HasOptional(o => o.Payment)
-                .WithRequired(p => p.Order);
+            modelBuilder.Entity<Payment>()
+             .HasRequired(p => p.Order);
+
         }
     }
 }

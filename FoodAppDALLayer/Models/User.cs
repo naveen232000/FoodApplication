@@ -23,8 +23,8 @@ namespace FoodAppDALLayer.Models
         public string Mobile { get; set; }
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
-        public string Role { get; set; }
+        
+    
     }
 }
 

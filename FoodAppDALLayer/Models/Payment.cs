@@ -26,6 +26,8 @@ namespace FoodAppDALLayer.Models
         public decimal TotalAmount { get; set; }
         [Required]
         public int PaymentStatus { get; set; }
+
+        public string CouponCode { get; set; }
         
 
     }

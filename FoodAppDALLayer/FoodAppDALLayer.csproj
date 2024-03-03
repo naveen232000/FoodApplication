@@ -52,32 +52,42 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext\FoodAppDbContext.cs" />
+    <Compile Include="Interface\IAdminRepository.cs" />
     <Compile Include="Interface\ICartRepository.cs" />
     <Compile Include="Interface\IFoodItemRepository.cs" />
     <Compile Include="Interface\IOrderRepository.cs" />
     <Compile Include="Interface\IPaymentRepository.cs" />
     <Compile Include="Interface\IRatingRepository.cs" />
     <Compile Include="Interface\IRestaurantRepository.cs" />
+    <Compile Include="Interface\IRoleRepository.cs" />
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Migrations\202403020928513_FirstMig.cs" />
     <Compile Include="Migrations\202403020928513_FirstMig.designer.cs">
       <DependentUpon>202403020928513_FirstMig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403031420333_Added_Admin_and_Role_Models.cs" />
+    <Compile Include="Migrations\202403031420333_Added_Admin_and_Role_Models.designer.cs">
+      <DependentUpon>202403031420333_Added_Admin_and_Role_Models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AdminRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\FoodItemRepository.cs" />
-    <Compile Include="Repository\IPaymentRepository.cs" />
-    <Compile Include="Repository\IRatingRepository.cs" />
+    <Compile Include="Repository\PaymentRepository.cs" />
+    <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\RestaurantRepository.cs" />
+    <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +97,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202403020928513_FirstMig.resx">
       <DependentUpon>202403020928513_FirstMig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403031420333_Added_Admin_and_Role_Models.resx">
+      <DependentUpon>202403031420333_Added_Admin_and_Role_Models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
