@@ -15,105 +15,63 @@ namespace FoodAppSeviceLayer.Controllers
 {
     public class FoodItemsController : ApiController
     {
-        private FoodAppDbContext db = new FoodAppDbContext();
+        private readonly FoodAppDbContext _context;
 
-        // GET: api/FoodItems
-        public IQueryable<FoodItem> GetFoodItems()
+        public FoodItemsController()
         {
-            return db.FoodItems;
+            _context = new FoodAppDbContext(); // Initialize DbContext
         }
 
-        // GET: api/FoodItems/5
-        [ResponseType(typeof(FoodItem))]
+        // GET api/foodItem 
+        public IEnumerable<FoodItem> GetFoodItem()
+        {
+            return _context.FoodItems.ToList();
+        }
+
+        // GET api/foodItem /{id}
         public IHttpActionResult GetFoodItem(int id)
         {
-            FoodItem foodItem = db.FoodItems.Find(id);
+            var foodItem = _context.FoodItems.Find(id);
             if (foodItem == null)
-            {
                 return NotFound();
-            }
-
             return Ok(foodItem);
         }
 
-        // PUT: api/FoodItems/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutFoodItem(int id, FoodItem foodItem)
+        // PUT api/foodItem/{id}
+        public IHttpActionResult PutRestaurant(int id, FoodItem foodItem)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            if (id != foodItem.FoodId)
-            {
+            if (id != foodItem.RestId)
                 return BadRequest();
-            }
 
-            db.Entry(foodItem).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FoodItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/FoodItems
-        [ResponseType(typeof(FoodItem))]
-        public IHttpActionResult PostFoodItem(FoodItem foodItem)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.FoodItems.Add(foodItem);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = foodItem.FoodId }, foodItem);
-        }
-
-        // DELETE: api/FoodItems/5
-        [ResponseType(typeof(FoodItem))]
-        public IHttpActionResult DeleteFoodItem(int id)
-        {
-            FoodItem foodItem = db.FoodItems.Find(id);
-            if (foodItem == null)
-            {
-                return NotFound();
-            }
-
-            db.FoodItems.Remove(foodItem);
-            db.SaveChanges();
-
+            _context.Entry(foodItem).State = EntityState.Modified;
+            _context.SaveChanges();
             return Ok(foodItem);
         }
 
-        protected override void Dispose(bool disposing)
+        // POST api/foodItem 
+        public IHttpActionResult PostRestaurant(FoodItem foodItem)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.FoodItems.Add(foodItem);
+            _context.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = foodItem.RestId }, foodItem);
         }
 
-        private bool FoodItemExists(int id)
+        // DELETE api/foodItem/{id}
+        public IHttpActionResult DeleteRestaurant(int id)
         {
-            return db.FoodItems.Count(e => e.FoodId == id) > 0;
+            var foodItem = _context.FoodItems.Find(id);
+            if (foodItem == null)
+                return NotFound();
+
+            _context.FoodItems.Remove(foodItem);
+            _context.SaveChanges();
+            return Ok(foodItem);
         }
     }
 }

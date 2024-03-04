@@ -15,105 +15,63 @@ namespace FoodAppSeviceLayer.Controllers
 {
     public class RestaurantsController : ApiController
     {
-        private FoodAppDbContext db = new FoodAppDbContext();
+        private readonly FoodAppDbContext _context;
 
-        // GET: api/Restaurants
-        public IQueryable<Restaurant> GetRestaurants()
+        public RestaurantsController()
         {
-            return db.Restaurants;
+            _context = new FoodAppDbContext(); // Initialize DbContext
         }
 
-        // GET: api/Restaurants/5
-        [ResponseType(typeof(Restaurant))]
+        // GET api/Restaurants
+        public IEnumerable<Restaurant> GetRestaurant()
+        {
+            return _context.Restaurants.ToList();
+        }
+
+        // GET api/Restaurants/{id}
         public IHttpActionResult GetRestaurant(int id)
         {
-            Restaurant restaurant = db.Restaurants.Find(id);
+            var restaurant = _context.Restaurants.Find(id);
             if (restaurant == null)
-            {
                 return NotFound();
-            }
-
             return Ok(restaurant);
         }
 
-        // PUT: api/Restaurants/5
-        [ResponseType(typeof(void))]
+        // PUT api/Restaurants/{id}
         public IHttpActionResult PutRestaurant(int id, Restaurant restaurant)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             if (id != restaurant.RestId)
-            {
                 return BadRequest();
-            }
 
-            db.Entry(restaurant).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RestaurantExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
-        // POST: api/Restaurants
-        [ResponseType(typeof(Restaurant))]
-        public IHttpActionResult PostRestaurant(Restaurant restaurant)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Restaurants.Add(restaurant);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = restaurant.RestId }, restaurant);
-        }
-
-        // DELETE: api/Restaurants/5
-        [ResponseType(typeof(Restaurant))]
-        public IHttpActionResult DeleteRestaurant(int id)
-        {
-            Restaurant restaurant = db.Restaurants.Find(id);
-            if (restaurant == null)
-            {
-                return NotFound();
-            }
-
-            db.Restaurants.Remove(restaurant);
-            db.SaveChanges();
-
+            _context.Entry(restaurant).State = EntityState.Modified;
+            _context.SaveChanges();
             return Ok(restaurant);
         }
 
-        protected override void Dispose(bool disposing)
+        // POST api/Restaurants
+        public IHttpActionResult PostRestaurant(Restaurant restaurant)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            _context.Restaurants.Add(restaurant);
+            _context.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = restaurant.RestId }, restaurant);
         }
 
-        private bool RestaurantExists(int id)
+        // DELETE api/Restaurants/{id}
+        public IHttpActionResult DeleteRestaurant(int id)
         {
-            return db.Restaurants.Count(e => e.RestId == id) > 0;
+            var restaurant = _context.Restaurants.Find(id);
+            if (restaurant == null)
+                return NotFound();
+
+            _context.Restaurants.Remove(restaurant);
+            _context.SaveChanges();
+            return Ok(restaurant);
         }
     }
 }
