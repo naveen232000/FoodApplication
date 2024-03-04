@@ -14,6 +14,7 @@ namespace FoodAppDALLayer.Interface
         void InsertUser(User user);
         void DeleteUser(int id);
         void UpdateUser(User user);
+        User GetUserByUserName(string userName);
         void Save();
     }
 }

@@ -14,6 +14,7 @@ namespace FoodAppDALLayer.Interface
         void InsertAdmin(Admin admin);
         void DeleteAdmin(int adminId);
         void UpdateAdmin(Admin admin);
+        Admin GetAdminByUserName(string userName);
         void Save();
     }
 }

@@ -44,7 +44,11 @@ namespace FoodAppDALLayer.Repository
         {
             _context.Entry(admin).State = EntityState.Modified;
         }
-
+        //ByAdminUserName
+        public Admin GetAdminByUserName(string userName)
+        {
+            return _context.Admins.FirstOrDefault(x => x.UserName == userName);
+        }
         public void Save()
         {
             _context.SaveChanges();

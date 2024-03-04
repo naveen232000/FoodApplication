@@ -21,8 +21,8 @@ namespace FoodAppDALLayer.Models
         [Required, Phone, RegularExpression(@"^(+\d{1, 3}
     [- ]?)?\d{10}$", ErrorMessage = "Not a valid phone number")]
         public string Mobile { get; set; }
-        [Required]
-        public string Qty { get; set; }
+        //[Required]
+        //public string Qty { get; set; }
         [Required]
         public double Latitude { get; set; }
         [Required]
