@@ -18,13 +18,13 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Admin login", "AdminLogin", "Account", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("User login", "UserLogin", "Account", new { area = "" }, new { @class = "nav-link" })</li>
-                      
+                    <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
+                <p class="text-bg-danger">  @Session["UserName"]</p>
             </div>
         </div>
     </nav>
+    
     <div class="container body-content">
         @RenderBody()
         <hr />

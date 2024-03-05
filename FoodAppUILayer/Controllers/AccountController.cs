@@ -34,6 +34,56 @@ namespace FoodAppUILayer.Controllers
 
             return View();
         }
+        [HttpPost]
+        public ActionResult UserLogin(LoginViewModel loginView)
+        {
+            var isUser = Authentication.VerifyUserCredentials(loginView.UserName, loginView.Password);
+
+            if (isUser)
+            {
+                var user = userRepository.GetUserByUserName(loginView.UserName);
+                Session["UserId"] = user.UserId;
+                Session["UserName"] = user.UserName;
+                FormsAuthentication.SetAuthCookie(loginView.UserName, false);
+                return RedirectToAction("About", "Home");
+            }
+            else
+            {
+                // If authentication fails, you may want to show an error message.
+                ModelState.AddModelError(string.Empty, "Invalid username or password");
+                return View(loginView);
+            }
+        }
+        [HttpGet]
+        public ActionResult UserResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userRepository.GetUserByUserName(model.UserName);
+
+                if (user == null)
+                {
+                    ModelState.AddModelError(nameof(model.UserName), "Invalid username.");
+                   
+                    return View(model);
+                }
+                else
+                {
+                    var passwordHash = new PasswordHasher<User>();
+                    user.Password = passwordHash.HashPassword(user, model.Password);
+                    userRepository.Save();
+                }
+                TempData["SuccessMessage"] = "Password reset successfully. Please log in with your new password.";
+                return RedirectToAction("UserLogin", "Account");
+            }
+            return View(model);
+        }
 
         //Admin login
         public ActionResult AdminLogin()
@@ -53,7 +103,7 @@ namespace FoodAppUILayer.Controllers
                 Session["UserId"] = admin.Id;
                 Session["UserName"] = admin.UserName;
                 FormsAuthentication.SetAuthCookie(loginView.UserName, false);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Contact", "Home");
             }
             else
             {
@@ -94,5 +144,13 @@ namespace FoodAppUILayer.Controllers
             return View(model);
         }
 
+        //logout
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            FormsAuthentication.SignOut();
+            ViewBag.IsLoggedOut = "true";
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
