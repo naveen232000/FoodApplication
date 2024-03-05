@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FoodAppDALLayer.Models.Restaurant>
+
+@{
+    ViewBag.Title = "AllRestaurant";
+}
+
+<h2>AllRestaurant</h2>
+
+<p class="bg-success">
+    @Html.ActionLink("Add Restaurants", "AddRestaurants")
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RestId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Latitude)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Longitude)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var restaurant in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.RestId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Mobile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Latitude)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Longitude)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditRestaurant", new { id = restaurant.RestId }) |
+          
+            @Html.ActionLink("Delete", "DeleteRest", new { id = restaurant.RestId })
+        </td>
+    </tr>
+}
+
+</table>

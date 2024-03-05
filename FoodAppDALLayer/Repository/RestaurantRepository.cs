@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.PeerToPeer;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,12 +27,13 @@ namespace FoodAppDALLayer.Repository
 
         public Restaurant GetRestaurantById(int id)
         {
+
             return _context.Restaurants.Find(id);
         }
 
-        public void InsertRestaurant(Restaurant restaurant)
+        public  void InsertRestaurant(Restaurant restaurant)
         {
-            _context.Restaurants.Add(restaurant);
+             _context.Restaurants.Add(restaurant);
         }
 
         public void DeleteRestaurant(int id)

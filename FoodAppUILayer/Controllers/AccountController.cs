@@ -103,7 +103,7 @@ namespace FoodAppUILayer.Controllers
                 Session["UserId"] = admin.Id;
                 Session["UserName"] = admin.UserName;
                 FormsAuthentication.SetAuthCookie(loginView.UserName, false);
-                return RedirectToAction("Contact", "Home");
+                return RedirectToAction("Index", "Admin");
             }
             else
             {
