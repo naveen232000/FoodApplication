@@ -1,0 +1,103 @@
+﻿@model IEnumerable<FoodAppDALLayer.Models.Order>
+
+@{
+    ViewBag.Title = "AllOrders";
+}
+
+<h2>AllOrders</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodItem.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.PaymentType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentId)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedDeliveryTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfOrder)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.CouponCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Payment.PaymentStatus)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FoodItem.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Payment.PaymentType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeliveryCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedDeliveryTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfOrder)
+        </td>
+
+        <th>
+            @Html.DisplayFor(model => item.Payment.CouponCode)
+        </th>
+        <th>
+            @Html.DisplayFor(model => item.Payment.PaymentStatus)
+        </th>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+        </td>
+    </tr>
+}
+
+</table>

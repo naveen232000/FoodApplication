@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202403040823233_roleid_added_user.designer.cs">
       <DependentUpon>202403040823233_roleid_added_user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403051331199_updated mobile property.cs" />
+    <Compile Include="Migrations\202403051331199_updated mobile property.designer.cs">
+      <DependentUpon>202403051331199_updated mobile property.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -238,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403040823233_roleid_added_user.resx">
       <DependentUpon>202403040823233_roleid_added_user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403051331199_updated mobile property.resx">
+      <DependentUpon>202403051331199_updated mobile property.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

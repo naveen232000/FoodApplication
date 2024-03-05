@@ -1,5 +1,6 @@
 ﻿using FoodAppDALLayer.Interface;
 using FoodAppDALLayer.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,7 @@ namespace FoodAppUILayer.Controllers
             return View();
         }
 
+       //Restaurant Crud
         public ActionResult AllRestaurant()
         {
             var restaurants = restaurantRepository.GetAllRestaurants();
@@ -182,6 +184,204 @@ namespace FoodAppUILayer.Controllers
                Mobile = restaurants.Mobile,
                Latitude = restaurants.Latitude,
                Longitude = restaurants.Longitude,
+            };
+        }
+
+        //User Crud
+
+        public ActionResult AllUsers()
+        {
+            var userRepo = userRepository.GetAllUsers();
+            var userModel = userRepo.Select(MapToViewModel).ToList();
+            return View(userModel);
+
+        }
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddUser(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                var passwordHasher = new PasswordHasher<User>();
+               model.Password= passwordHasher.HashPassword(model, model.Password);
+                // Create a Product entity from the ViewModel
+                User usr = new User
+                {
+                   UserName = model.UserName,
+                   Email = model.Email,
+                   Mobile= model.Mobile,
+                   Password = model.Password,
+                   RoleId=2
+                };
+
+                // Add the product to the database
+                userRepository.InsertUser(usr);
+                userRepository.Save();
+
+                return RedirectToAction("AllUsers"); // Redirect to the product list page
+            }
+
+            return View(model);
+        }
+        public ActionResult EditUser(int id)
+        {
+            var user = userRepository.GetUserById(id);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User not found.");
+                return View();
+            }
+
+            var viewModel = new User
+            {
+              UserId = id,
+              UserName=user.UserName,
+              Email=user.Email,
+              Mobile=user.Mobile,
+              Password=user.Password,
+              RoleId=user.RoleId
+            };
+
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUser(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine(model.UserId);
+                var user = userRepository.GetUserById(model.UserId);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "user not found.");
+                    return View(model);
+                }
+                user.UserName = model.UserName;
+                user.Email = model.Email;
+                user.Mobile = model.Mobile;
+             
+                user.RoleId=model.RoleId;
+                try
+                {
+                    userRepository.Save();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while processing your request. Please try again later.");
+                }
+            }
+
+            return View(model);
+        }
+        //Delete
+        public ActionResult DeleteUsr(int id)
+        {
+            var user = userRepository.GetUserById(id);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Restaurant not found.");
+                return RedirectToAction("Index");
+            }
+
+            var viewModel = new User
+            {
+                UserId = id,
+                UserName = user.UserName,
+                Email = user.Email,
+                Mobile = user.Mobile,
+                Password = user.Password,
+                RoleId = user.RoleId
+            };
+
+            return View(viewModel);
+        }
+
+        [HttpPost, ActionName("DeleteUsr")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteUserConfirm(int id)
+        {
+            var user = userRepository.GetUserById(id);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "user not found.");
+                return RedirectToAction("Index");
+            }
+            userRepository.DeleteUser(user.UserId);
+
+            userRepository.Save();
+            TempData["SuccessMessage"] = "user deleted successfully.";
+            return RedirectToAction("Index");
+        }
+        //MapToViewModel user
+        private User MapToViewModel(User user)
+        {
+            return new User
+            {
+              UserId=user.UserId,
+              UserName=user.UserName,
+              Email=user.Email,
+              Mobile=user.Mobile,
+              Password=user.Password,
+              RoleId=user.RoleId,
+                
+
+            };
+}
+
+        //orders
+        public ActionResult AllOrders()
+        {
+            var ordersRepo = orderRepository.GetAllOrders();
+            var orderModel = ordersRepo.Select(MapToViewModel).ToList();
+            return View(orderModel);
+
+        }
+        private  Order MapToViewModel(Order order)
+        {
+            return new Order
+            {
+              OrderId = order.OrderId,
+              FoodItem = order.FoodItem,
+              DeliveryCharge = order.DeliveryCharge,
+              OrderStatus = order.OrderStatus,
+              DateOfOrder = order.DateOfOrder,
+              DeliveryAddress = order.DeliveryAddress,
+              Qty = order.Qty,
+              TotalAmount = order.TotalAmount,
+              EstimatedDeliveryTime = order.EstimatedDeliveryTime,
+              Payment=order.Payment,
+              PaymentId=order.PaymentId,
+              
+
+            };
+        }
+
+        //Ratings
+        //orders
+        public ActionResult AllRating()
+        {
+            var ratingRepo = ratingRepository.GetAllRatings();
+            var ratingModel = ratingRepo.Select(MapToViewModel).ToList();
+            return View(ratingModel);
+
+        }
+        private Rating MapToViewModel(Rating rating)
+        {
+            return new Rating
+            {
+           RatingId = rating.RatingId,
+           RatingCount = rating.RatingCount,
+           Comments = rating.Comments,
+           Like = rating.Like,
+           FoodId = rating.FoodId,
+           UserId = rating.UserId,
             };
         }
     }
