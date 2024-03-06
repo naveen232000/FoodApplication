@@ -1,5 +1,6 @@
 ﻿using FoodAppDALLayer.Interface;
 using FoodAppDALLayer.Models;
+using FoodAppUILayer.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -21,18 +22,38 @@ namespace FoodAppUILayer.Controllers
         private readonly IUserRepository userRepository;
         private readonly IRestaurantRepository restaurantRepository;
         private readonly IOrderRepository orderRepository;
+        private readonly IFoodItemRepository foodItemRepository;
 
-        public AdminController(IRatingRepository ratingRepository, IRestaurantRepository restaurantRepository, IUserRepository userRepository, IOrderRepository orderRepository)
+        public AdminController(IRatingRepository ratingRepository, IRestaurantRepository restaurantRepository, IUserRepository userRepository, IOrderRepository orderRepository, IFoodItemRepository foodItemRepository)
         {
             this.ratingRepository = ratingRepository ?? throw new ArgumentNullException(nameof(ratingRepository));
             this.restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(restaurantRepository));
             this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             this.orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
+            this.foodItemRepository = foodItemRepository;
         }
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+
+            var ordersRepo = orderRepository.GetAllOrders();
+            int orderCount = ordersRepo.Count();
+            var userrepo = userRepository.GetAllUsers();
+            int userCount = userrepo.Count();
+            var restRepo = restaurantRepository.GetAllRestaurants();
+            int restCount = restRepo.Count();
+            var foodRepo = foodItemRepository.GetAllFoodItems();
+            int foodCount = foodRepo.Count();
+
+            var model = new IndexViewModel
+            {
+                OrderCount = orderCount,
+                UserCount = userCount,
+                RestaurantCount = restCount,
+                FoodItemCount=foodCount,
+            };
+
+            return View(model);
         }
 
        //Restaurant Crud
@@ -369,7 +390,7 @@ namespace FoodAppUILayer.Controllers
         
         public ActionResult AllRating()
         {
-            var ratingRepo = ratingRepository.GetAllRatings();
+            var ratingRepo = ratingRepository.GetAllRatings(); 
             var ratingModel = ratingRepo.Select(MapToViewModel).ToList();
             return View(ratingModel);
 
@@ -384,6 +405,8 @@ namespace FoodAppUILayer.Controllers
            Like = rating.Like,
            FoodId = rating.FoodId,
            UserId = rating.UserId,
+           User= rating.User,
+           FoodItem= rating.FoodItem,
             };
         }
     }

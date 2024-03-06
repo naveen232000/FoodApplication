@@ -3,67 +3,85 @@
 @{
     ViewBag.Title = "AllRestaurant";
 }
+<style>
+    .equal-width {
+        width: 1%;
+    }
+</style>
+<h2 class="text-center">Restaurant</h2>
 
-<h2>AllRestaurant</h2>
-
-<p class="bg-success">
-    @Html.ActionLink("Add Restaurants", "AddRestaurants")
-</p>
+   
+<div class="text-black">
+    <h3>
+        <a href="@Url.Action("AddRestaurants")" style="color: forestgreen !important; text-decoration: none">
+            <i class="bi bi-building-fill-add" style="color:forestgreen"></i> Add Restaurant
+        </a>
+    </h3>
+</div>
 <table class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RestId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Mobile)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </th>
-        <th></th>
-    </tr>
+    <thead class="table-info">
+        <tr>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.RestId)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Latitude)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Longitude)
+            </th>
+            <th class="equal-width"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var restaurant in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.RestId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.Latitude)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => restaurant.Longitude)
+                </td>
+                <td>
+                    <h3>
+                        <a href="@Url.Action("EditRestaurant", new { id = restaurant.RestId})" style="color:deepskyblue !important; text-decoration: none">
+                            <i class="bi-pencil-square" style="color: deepskyblue "></i>
+                        </a>
 
-@foreach (var restaurant in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.RestId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.Mobile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.Longitude)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditRestaurant", new { id = restaurant.RestId }) |
-          
-            @Html.ActionLink("Delete", "DeleteRest", new { id = restaurant.RestId })
-        </td>
-    </tr>
-}
-
+                        <a href="@Url.Action("DeleteRest", new { id = restaurant.RestId}) " style="color: orange !important; text-decoration: none">
+                            <i class="bi bi-trash" style="color: orange"></i>
+                        </a>
+                    </h3>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

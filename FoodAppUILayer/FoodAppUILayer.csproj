@@ -287,6 +287,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RestaurantViewModel.cs" />
@@ -313,6 +314,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\18132521.jpg" />
     <Content Include="Images\4.png" />
     <Content Include="Images\5.png" />
     <Content Include="Images\6.png" />

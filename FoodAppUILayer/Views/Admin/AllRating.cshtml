@@ -4,54 +4,54 @@
     ViewBag.Title = "AllRating";
 }
 
-<h2>AllRating</h2>
+<h2 class="text-center">User Rating</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
-    <tr>
-        <th>
-            <p>Food Name</p>
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Like)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Comments)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RatingCount)
-        </th>
-        <th></th>
-    </tr>
+    <thead class="table-success">
+        <tr>
+            <th>
+                <p>Food Name</p>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Like)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comments)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingCount)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoodItem.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Like)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Comments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RatingCount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RatingId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RatingId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RatingId })
-        </td>
-    </tr>
-}
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodItem.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    <i class="bi bi-suit-heart-fill" style="color:@(item.Like ? "red" : "none");"></i>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Comments)
+                </td>
+                <td>
+                    @for (int i = 0; i < item.RatingCount; i++)
+                    {
+                        <i class="bi bi-star-fill" style="color:darkorange"></i>
+                    }
+                </td>
 
+            </tr>
+        }
+    </tbody>
 </table>

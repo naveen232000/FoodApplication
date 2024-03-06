@@ -3,44 +3,56 @@
 @{
     ViewBag.Title = "All Categories";
 }
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <div class="container">
-            <h2 class="text-center mb-4">All Categories</h2>
-            <table class="table table-bordered ">
-                <thead class="thead-dark">
-                    <tr class="h-25">
-                        <th class="text-center w-25">Category ID</th>
-                        <th class="text-center w-25">Category Name</th>
-                        <th class="text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var category in Model)
-                    {
-                        <tr>
-                            <td class="text-center">@category.CategoryId</td>
-                            <td class="text-center">@category.CategoryName</td>
-                            <td class="text-center">
-                                @Html.ActionLink("Edit", "EditCategory", new { id = category.CategoryId }, new { @class = "btn btn-primary" }) |
-                                @Html.ActionLink("Delete", "DeleteCategory", new { id = category.CategoryId }, new { @class = "btn btn-danger" })
-                            </td>
-                        </tr>
-                    }
-                </tbody>
 
-            </table>
-            <div class="text-end me-3">
-                <button class="btn btn-success" onclick="location.href='@Url.Action("AddCategory","Category")'">
-                    Add New Category
-                </button>
-            </div>
-
-        </div>
+<h2 class="text-center">All Categories</h2>
 
 
-
-    </div>
-    <div class="col-md-2"></div>
+<div class="text-black">
+    <h3>
+        <a href="@Url.Action("AddUser")" style="color: forestgreen !important; text-decoration: none">
+            <i class="bi bi-plus-circle" style="color:forestgreen"></i> Add Categories
+        </a>
+    </h3>
 </div>
+<table class="table">
+    <thead class="table-success">
+        <tr>
+            <th>
+                Category ID
+            </th>
+            <th>
+                Category Name
+            </th>
+            <th>
+                Action
+            </th>
+  
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+             
+                <td>
+                    <h3>
+                        <a href="@Url.Action("EditCategory", new { id = item.CategoryId })" style="color:deepskyblue !important; text-decoration: none">
+                            <i class="bi-pencil-square" style="color: deepskyblue "></i>
+                        </a>
+
+                        <a href="@Url.Action("DeleteCategory", new { id = item.CategoryId }) " style="color: orange !important; text-decoration: none">
+                            <i class="bi bi-trash" style="color: orange"></i>
+                        </a>
+                    </h3>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

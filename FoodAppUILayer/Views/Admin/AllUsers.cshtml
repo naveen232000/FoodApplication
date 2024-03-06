@@ -4,15 +4,22 @@
     ViewBag.Title = "AllUsers";
 }
 
-<h2>AllUsers</h2>
 
-<p>
-    @Html.ActionLink("Add User", "AddUser")
-</p>
+<h2 class="text-center">All Users</h2>
+
+
+<div class="text-black">
+    <h3>
+        <a href="@Url.Action("AddUser")" style="color: forestgreen !important; text-decoration: none">
+            <i class="bi bi-person-add" style="color:forestgreen"></i> Add User
+        </a>
+    </h3>
+</div>
 <table class="table">
+    <thead class="table-success">
     <tr>
         <th>
-            <p>Role</p>
+            Role
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserName)
@@ -28,30 +35,39 @@
         </th>
         <th></th>
     </tr>
+</thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    <h3>
+                        <a href="@Url.Action("EditUser", new { id = item.UserId })" style="color:deepskyblue !important; text-decoration: none">
+                            <i class="bi-pencil-square" style="color: deepskyblue "></i>
+                        </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mobile)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditUser", new { id=item.UserId }) |
-        
-            @Html.ActionLink("Delete", "DeleteUsr", new { id=item.UserId })
-        </td>
-    </tr>
-}
+                        <a href="@Url.Action("DeleteUsr", new { id = item.UserId }) " style="color: orange !important; text-decoration: none">
+                            <i class="bi bi-trash" style="color: orange"></i>
+                        </a>
+                    </h3>
 
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
