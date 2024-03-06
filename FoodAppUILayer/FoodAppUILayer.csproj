@@ -280,10 +280,13 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RestaurantViewModel.cs" />
@@ -310,6 +313,17 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\5.png" />
+    <Content Include="Images\6.png" />
+    <Content Include="Images\7.png" />
+    <Content Include="Images\food-delivery.png" />
+    <Content Include="Images\futuristic-abstract-background-with-circular-shapes.jpg" />
+    <Content Include="Images\Img1.jpg" />
+    <Content Include="Images\Img2.jpg" />
+    <Content Include="Images\Img3.jpg" />
+    <Content Include="Images\Img4.jpg" />
+    <Content Include="Images\Img5.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -361,6 +375,13 @@
     <Content Include="Views\Account\RegisterUser.cshtml" />
     <Content Include="Views\Shared\_RestaurantLayout.cshtml" />
     <Content Include="Views\Account\RestaurantLogin.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\EditCategory.cshtml" />
+    <Content Include="Views\Restaurant\AllFoodItems.cshtml" />
+    <Content Include="Views\Restaurant\AddFood.cshtml" />
+    <Content Include="Views\Restaurant\EditFoodItem.cshtml" />
+    <Content Include="Views\Restaurant\DeleteFood.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

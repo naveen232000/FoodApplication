@@ -1,19 +1,41 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+<main>
+    <div class="container text-center bg-warning py-4">
+        <h1 class="font-weight-bold">@ViewBag.Title</h1>
+    </div>
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+    <section class="contact-info mt-4">
+        <div class="address text-center">
+            <p><b>Our Address</b></p>
+            <p>145 Banjara Hills</p>
+            <p>Hyderabad, 500098</p>
+        </div>
+        <div class="phone mt-3 text-center">
+            <p><b>Contact Number</b></p>
+            <p>Phone: 937-098-9273</p>
+        </div>
+        <div class="email mt-3 text-center">
+            <p><b>Email</b></p>
+            <p>Email: FoodDelivery@gmail.com</p>
+        </div>
+    </section>
+
+    <section class="business-hours mt-4 text-center">
+        <p><b>Business Hours</b></p>
+        <p>Monday - Friday: 9:00 AM - 5:00 PM</p>
+        <p>Saturday: 10:00 AM - 2:00 PM</p>
+        <p>Sunday: Closed</p>
+    </section>
+
+    <section class="social-media mt-4 text-center">
+        <p><b>Follow Us</b></p>
+        <ul>
+            <li><a href="https://www.facebook.com/FoodDelivery" target="_blank">Facebook</a></li>
+            <li><a href="https://twitter.com/FoodDelivery" target="_blank">Twitter</a></li>
+            <li><a href="https://www.instagram.com/FoodDelivery" target="_blank">Instagram</a></li>
+        </ul>
+    </section>
 </main>

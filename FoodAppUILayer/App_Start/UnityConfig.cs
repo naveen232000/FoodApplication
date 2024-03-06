@@ -21,6 +21,8 @@ namespace FoodAppUILayer.App_Start
             container.RegisterType<IRestaurantRepository, RestaurantRepository>();
             container.RegisterType<IRatingRepository, RatingRepository>();
             container.RegisterType<IOrderRepository, OrderRepository>();
+            container.RegisterType<ICategoryRepository, CategoryRepository>();
+            container.RegisterType<IFoodItemRepository, FoodItemRepository>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

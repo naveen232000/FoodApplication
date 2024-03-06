@@ -16,6 +16,9 @@ namespace FoodAppDALLayer.Models
         public int FoodId { get; set; }
         [ForeignKey("FoodId")]
         public virtual FoodItem FoodItem { get; set; }
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User User { get; set; }
         [Required]
         public int Qty { get; set; }
         [Required, DataType(DataType.Currency)]

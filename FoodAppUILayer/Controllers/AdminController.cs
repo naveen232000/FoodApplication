@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace FoodAppUILayer.Controllers
 {
-    
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         public AdminController()

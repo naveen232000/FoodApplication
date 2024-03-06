@@ -25,17 +25,19 @@
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    
-                    <li>@Html.ActionLink("Register User", "RegisterUser", "Account", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+
+                    <li class="ms-5">@Html.ActionLink("Register User", "RegisterUser", "Account", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>
                         <div class="dropdown">
-                            <a class=" dropdown-toggle nav-link"  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class=" dropdown-toggle nav-link" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                 Login
                             </a>
                             <ul class="dropdown-menu text-bg-dark " aria-labelledby="dropdownMenuButton1">
-                                <li >@Html.ActionLink("Admin login", "AdminLogin", "Account", new { area = "" }, new { @class = "nav-link dropdown-item custom-dropdown-item" })</li>
-                                <li >@Html.ActionLink("User login", "UserLogin", "Account", new { area = "" }, new { @class = "nav-link dropdown-item custom-dropdown-item" })</li>
-                                <li >@Html.ActionLink("Restaurant login", "RestaurantLogin", "Account", new { area = "" }, new { @class = "nav-link dropdown-item custom-dropdown-item" })</li>
+                                <li>@Html.ActionLink("Admin login", "AdminLogin", "Account", new { area = "" }, new { @class = "nav-link dropdown-item custom-dropdown-item" })</li>
+                                <li>@Html.ActionLink("User login", "UserLogin", "Account", new { area = "" }, new { @class = "nav-link dropdown-item custom-dropdown-item" })</li>
+                                <li>@Html.ActionLink("Restaurant login", "RestaurantLogin", "Account", new { area = "" }, new { @class = "nav-link dropdown-item custom-dropdown-item" })</li>
                             </ul>
                         </div>
                     </li>

@@ -17,7 +17,7 @@ namespace FoodAppDALLayer.Models
         [Required, StringLength(100)]
         public string Name { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
 
@@ -30,5 +30,11 @@ namespace FoodAppDALLayer.Models
 
         public decimal Price { get; set; }
         public bool Availability { get; set; }
+
+        public int CategoryId { get; set; }
+
+        // Navigation property
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
     }
 }

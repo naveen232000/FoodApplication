@@ -184,6 +184,7 @@
     <Compile Include="ApplicationDbContext\FoodAppDbContext.cs" />
     <Compile Include="Interface\IAdminRepository.cs" />
     <Compile Include="Interface\ICartRepository.cs" />
+    <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\IFoodItemRepository.cs" />
     <Compile Include="Interface\IOrderRepository.cs" />
     <Compile Include="Interface\IPaymentRepository.cs" />
@@ -211,9 +212,22 @@
     <Compile Include="Migrations\202403060125214_restaurent roleid added.designer.cs">
       <DependentUpon>202403060125214_restaurent roleid added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403060401210_Added Category Model.cs" />
+    <Compile Include="Migrations\202403060401210_Added Category Model.designer.cs">
+      <DependentUpon>202403060401210_Added Category Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403060719350_foodimage to byte to string.cs" />
+    <Compile Include="Migrations\202403060719350_foodimage to byte to string.designer.cs">
+      <DependentUpon>202403060719350_foodimage to byte to string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403060936133_added order userid.cs" />
+    <Compile Include="Migrations\202403060936133_added order userid.designer.cs">
+      <DependentUpon>202403060936133_added order userid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Payment.cs" />
@@ -224,6 +238,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AdminRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
+    <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\FoodItemRepository.cs" />
     <Compile Include="Repository\PaymentRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
@@ -252,6 +267,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403060125214_restaurent roleid added.resx">
       <DependentUpon>202403060125214_restaurent roleid added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403060401210_Added Category Model.resx">
+      <DependentUpon>202403060401210_Added Category Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403060719350_foodimage to byte to string.resx">
+      <DependentUpon>202403060719350_foodimage to byte to string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403060936133_added order userid.resx">
+      <DependentUpon>202403060936133_added order userid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
