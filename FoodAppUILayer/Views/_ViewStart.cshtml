@@ -7,6 +7,10 @@
     {
         Layout = "~/Views/Shared/_UserLayout.cshtml";
     }
+    else if (User.IsInRole("RestaurantOwner"))
+    {
+        Layout = "~/Views/Shared/_RestaurantLayout.cshtml";
+    }
     else
     {
         Layout = "~/Views/Shared/_Layout.cshtml";

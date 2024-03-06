@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -20,11 +21,13 @@ namespace FoodAppUILayer.Controllers
         }
         private readonly IAdminRepository adminRepository;
         private readonly IUserRepository userRepository;
+        private readonly IRestaurantRepository restaurantRepository;
 
-        public AccountController(IAdminRepository adminRepository, IUserRepository userRepository)
+        public AccountController(IAdminRepository adminRepository, IUserRepository userRepository, IRestaurantRepository restaurantRepository)
         {
             this.adminRepository = adminRepository ?? throw new ArgumentNullException(nameof(adminRepository));
             this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
+            this.restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
         // GET: Account
@@ -84,7 +87,36 @@ namespace FoodAppUILayer.Controllers
             }
             return View(model);
         }
+        public ActionResult RegisterUser()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RegisterUser(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                var passwordHasher = new PasswordHasher<User>();
+                model.Password = passwordHasher.HashPassword(model, model.Password);
+                // Create a Product entity from the ViewModel
+                User usr = new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    Mobile = model.Mobile,
+                    Password = model.Password,
+                    RoleId = 2
+                };
 
+                // Add the product to the database
+                userRepository.InsertUser(usr);
+                userRepository.Save();
+
+                return RedirectToAction("UserLogin"); // Redirect to the product list page
+            }
+
+            return View(model);
+        }
         //Admin login
         public ActionResult AdminLogin()
         {
@@ -143,7 +175,31 @@ namespace FoodAppUILayer.Controllers
             }
             return View(model);
         }
+        //Restaurant
+        public ActionResult RestaurantLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RestaurantLogin(RestaurantViewModel restview)
+        {
+            var isRest = Authentication.VerifyRestaurantCredentials(restview.Password, restview.UserName);
 
+            if (isRest)
+            {
+                var rest = restaurantRepository.GetRestaurantByemail(restview.UserName);
+                Session["UserId"] = rest.RestId;
+                Session["UserName"] = rest.Email;
+                FormsAuthentication.SetAuthCookie(restview.UserName, false);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                // If authentication fails, you may want to show an error message.
+                ModelState.AddModelError(string.Empty, "Invalid username or password");
+                return View(restview);
+            }
+        }
         //logout
         public ActionResult Logout()
         {

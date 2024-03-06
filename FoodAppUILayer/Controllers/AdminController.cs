@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace FoodAppUILayer.Controllers
 {
+    
     public class AdminController : Controller
     {
         public AdminController()
@@ -330,6 +331,7 @@ namespace FoodAppUILayer.Controllers
               Mobile=user.Mobile,
               Password=user.Password,
               RoleId=user.RoleId,
+              Role=user.Role
                 
 
             };
@@ -364,7 +366,7 @@ namespace FoodAppUILayer.Controllers
         }
 
         //Ratings
-        //orders
+        
         public ActionResult AllRating()
         {
             var ratingRepo = ratingRepository.GetAllRatings();

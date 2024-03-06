@@ -50,5 +50,20 @@ namespace FoodAppDALLayer.Service
 
             return false; // Invalid username or password
         }
+
+        public static bool VerifyRestaurantCredentials(int id, string Email)
+        {
+            // Your logic to check username and password in the database
+            var rest = context.Restaurants.FirstOrDefault(a => a.RestId == id && a.Email==Email);
+
+            if (rest != null)
+            {
+                
+                    return true; // Username and password are correct
+            
+            }
+
+            return false; // Invalid username or password
+        }
     }
 }

@@ -48,8 +48,14 @@ namespace FoodAppUILayer.Provider
                          join role in context.Roles on user.RoleId equals role.RoleId
                          where user.UserName == username
                          select role.Name;
-
-            // Check if the user is not an employee, then check in the Admins table
+            if (!result.Any())
+            {
+                result = from rest in context.Restaurants
+                         join role in context.Roles on rest.RoleId equals role.RoleId
+                         where rest.Email == username
+                         select role.Name;
+            }
+            // Check if the user, then check in the Admins table
             if (!result.Any())
             {
                 result = from admin in context.Admins

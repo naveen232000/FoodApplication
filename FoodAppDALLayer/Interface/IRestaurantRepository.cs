@@ -11,9 +11,11 @@ namespace FoodAppDALLayer.Interface
     {
         IEnumerable<Restaurant> GetAllRestaurants();
         Restaurant GetRestaurantById(int id);
+        Restaurant GetRestaurantByemail(string email);
         void InsertRestaurant(Restaurant restaurant);
         void DeleteRestaurant(int id);
         void UpdateRestaurant(Restaurant restaurant);
         void Save();
+       
     }
 }

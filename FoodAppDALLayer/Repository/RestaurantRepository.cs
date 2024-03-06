@@ -46,7 +46,11 @@ namespace FoodAppDALLayer.Repository
         {
             _context.Entry(restaurant).State = EntityState.Modified;
         }
-
+        //get restaurant by Email
+        public Restaurant GetRestaurantByemail(string email)
+        {
+            return _context.Restaurants.FirstOrDefault(x => x.Email == email);
+        }
         public void Save()
         {
             _context.SaveChanges();
