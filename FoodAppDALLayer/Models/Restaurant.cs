@@ -31,7 +31,7 @@ namespace FoodAppDALLayer.Models
         public double Longitude { get; set; }
 
         public string City { get; set; }
-
+        public string Image { get; set; }
         public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]

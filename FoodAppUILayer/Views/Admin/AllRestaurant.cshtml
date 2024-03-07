@@ -10,7 +10,7 @@
 </style>
 <h2 class="text-center">Restaurant</h2>
 
-   
+
 <div class="text-black">
     <h3>
         <a href="@Url.Action("AddRestaurants")" style="color: forestgreen !important; text-decoration: none">
@@ -23,6 +23,9 @@
         <tr>
             <th class="equal-width">
                 @Html.DisplayNameFor(model => model.RestId)
+            </th>
+            <th class="equal-width">
+                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th class="equal-width">
                 @Html.DisplayNameFor(model => model.Name)
@@ -45,7 +48,7 @@
             <th class="equal-width">
                 @Html.DisplayNameFor(model => model.Longitude)
             </th>
-            <th class="equal-width"></th>
+            <th class="equal-width"> Action</th>
         </tr>
     </thead>
     <tbody>
@@ -54,6 +57,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => restaurant.RestId)
+                </td>
+                <td>
+                    <img src="data:image;base64,@restaurant.Image" width="100" height="100" alt="Image" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => restaurant.Name)

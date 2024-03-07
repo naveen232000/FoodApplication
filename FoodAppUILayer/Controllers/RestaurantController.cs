@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace FoodAppUILayer.Controllers
 {
+    [Authorize(Roles = "RestaurantOwner")]
     public class RestaurantController : Controller
     {
         public RestaurantController()

@@ -224,6 +224,10 @@
     <Compile Include="Migrations\202403060936133_added order userid.designer.cs">
       <DependentUpon>202403060936133_added order userid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403071238416_added rest image.cs" />
+    <Compile Include="Migrations\202403071238416_added rest image.designer.cs">
+      <DependentUpon>202403071238416_added rest image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -276,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403060936133_added order userid.resx">
       <DependentUpon>202403060936133_added order userid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403071238416_added rest image.resx">
+      <DependentUpon>202403071238416_added rest image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

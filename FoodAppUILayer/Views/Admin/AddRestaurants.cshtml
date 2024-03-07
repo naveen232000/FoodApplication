@@ -24,7 +24,7 @@
         </div>
         <div class="col-sm-8 border-3 rounded ">
 
-            @using (Html.BeginForm("AddRestaurants", "Admin", FormMethod.Post, new { @class = "col-md-6" }))
+            @using (Html.BeginForm("AddRestaurants", "Admin", FormMethod.Post, new { enctype = "multipart/form-data",@class = "col-md-6" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -74,7 +74,13 @@
                         @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
+                <div class="form-group m-1">
+                    <label><i class="bi bi-image-alt"></i> Image</label>
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control", id = "imageInput" })
+                        @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                 <div class="form-group mt-1">
                     <label><i class="bi bi-crosshair"></i>Latitude</label>
 

@@ -73,16 +73,32 @@ namespace FoodAppUILayer.Controllers
         {
             if (ModelState.IsValid)
             {
-               
-                // Create a Product entity from the ViewModel
-                Restaurant rest = new Restaurant
+                
+                    var files = Request.Files;
+                    if (files.Count > 0)
+                    {
+                        using (var filestream = files[0].InputStream)
+                        {
+                            using (var memoryStream = new MemoryStream())
+                            {
+                                filestream.CopyTo(memoryStream);
+                                // Convert byte array to Base64 String
+                                model.Image = Convert.ToBase64String(memoryStream.ToArray());
+                            }
+                        }
+                    }
+
+                    // Create a Product entity from the ViewModel
+                    Restaurant rest = new Restaurant
                 {
                     Name = model.Name,
                     Address = model.Address,
+                    City = model.City,
                     Email= model.Email,
                     Mobile = model.Mobile,
                     Latitude = model.Latitude,
                     Longitude = model.Longitude,
+                    Image=model.Image,
                     RoleId=3
 
                 };
@@ -113,8 +129,10 @@ namespace FoodAppUILayer.Controllers
                Address = restaurant.Address,
                Email = restaurant.Email,
                Mobile = restaurant.Mobile,
+               City = restaurant.City,
                Latitude = restaurant.Latitude,
                Longitude = restaurant.Longitude,
+               Image=restaurant.Image,
             };
 
             return View(viewModel);
@@ -207,6 +225,7 @@ namespace FoodAppUILayer.Controllers
                Mobile = restaurants.Mobile,
                Latitude = restaurants.Latitude,
                Longitude = restaurants.Longitude,
+               Image = restaurants.Image,
             };
         }
 

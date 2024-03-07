@@ -56,7 +56,7 @@ namespace FoodAppUILayer.Controllers
                 Session["UserId"] = user.UserId;
                 Session["UserName"] = user.UserName;
                 FormsAuthentication.SetAuthCookie(loginView.UserName, false);
-                return RedirectToAction("About", "Home");
+                return RedirectToAction("AllRestaurant", "User");
             }
             else
             {
