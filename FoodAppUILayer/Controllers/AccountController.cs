@@ -1,4 +1,5 @@
-﻿using FoodAppDALLayer.Interface;
+﻿using CaptchaMvc.HtmlHelpers;
+using FoodAppDALLayer.Interface;
 using FoodAppDALLayer.Models;
 using FoodAppDALLayer.Service;
 using FoodAppUILayer.Models;
@@ -10,6 +11,7 @@ using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 
 namespace FoodAppUILayer.Controllers
 {
@@ -40,6 +42,12 @@ namespace FoodAppUILayer.Controllers
         [HttpPost]
         public ActionResult UserLogin(LoginViewModel loginView)
         {
+            // Check if the CAPTCHA is valid.
+            if (!this.IsCaptchaValid("Captcha is not valid"))
+            {
+                ModelState.AddModelError(string.Empty, "Captcha is not valid");
+                return View(loginView);
+            }
             var isUser = Authentication.VerifyUserCredentials(loginView.UserName, loginView.Password);
 
             if (isUser)
@@ -93,7 +101,12 @@ namespace FoodAppUILayer.Controllers
         }
         [HttpPost]
         public ActionResult RegisterUser(User model)
-        {
+        { // Check if the CAPTCHA is valid.
+            if (!this.IsCaptchaValid("Captcha is not valid"))
+            {
+                ModelState.AddModelError(string.Empty, "Captcha is not valid");
+                return View(model);
+            }
             if (ModelState.IsValid)
             {
                 var passwordHasher = new PasswordHasher<User>();
@@ -191,7 +204,7 @@ namespace FoodAppUILayer.Controllers
                 Session["UserId"] = rest.RestId;
                 Session["UserName"] = rest.Email;
                 FormsAuthentication.SetAuthCookie(restview.UserName, false);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("AllFoodItems", "Restaurant", new { id = rest.RestId });
             }
             else
             {

@@ -20,4 +20,5 @@ namespace FoodAppUILayer
             UnityConfig.RegisterComponents();
         }
     }
+   
 }

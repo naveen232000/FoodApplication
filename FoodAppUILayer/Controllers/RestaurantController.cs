@@ -31,14 +31,34 @@ namespace FoodAppUILayer.Controllers
             this.restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(restaurantRepository));
         }
 
-        public ActionResult AllFoodItems()
+        public ActionResult AllFoodItems(int id)
         {
-            var foodItem = foodItemRepository.GetAllFoodItems();
-            var foodIteamModel = foodItem.Select(MapToViewModel).ToList();
-            return View(foodIteamModel);
+            var foodItem = foodItemRepository.GetFoodItemByRestId(id);
+            if (foodItem == null)
+            {
+                return View("AddFood");
+            }
+            var foodItemModel = foodItem.Select(MapToViewModel).ToList();
+
+            return View(foodItemModel);
 
         }
-   
+        //MapToViewModel
+        private FoodItem MapToViewModel(FoodItem foodItem)
+        {
+          return  new FoodItem
+            {
+                FoodId = foodItem.FoodId,
+                Availability = foodItem.Availability,
+                Name = foodItem.Name,
+                Image = foodItem.Image,
+                Category = foodItem.Category,
+                Description = foodItem.Description,
+                Restaurant = foodItem.Restaurant,
+                RestId = foodItem.RestId,
+                Price = foodItem.Price,
+            };
+        }
 
         //Addproduct
         public ActionResult AddFood()
@@ -81,7 +101,7 @@ namespace FoodAppUILayer.Controllers
                     };
                     foodItemRepository.InsertFoodItem(food);
                     foodItemRepository.Save();
-                    return RedirectToAction("AllFoodItems");
+                    return RedirectToAction("AllFoodItems", new { id = model.RestId });
                 }
                 catch (Exception ex)
                 {
@@ -139,13 +159,15 @@ namespace FoodAppUILayer.Controllers
                         }
                     }
                 }
-                Console.WriteLine(model.RestId);
-                var foodItem = foodItemRepository.GetFoodItemById(model.RestId);
+
+                var foodItem = foodItemRepository.GetFoodItemById(model.FoodId);
                 if (foodItem == null)
                 {
                     ModelState.AddModelError(string.Empty, "FoodItem not found.");
                     return View(model);
                 }
+               
+                else { 
                 foodItem.Name = model.Name;
                 foodItem.Availability = model.Availability;
                 foodItem.Description = model.Description;
@@ -153,16 +175,17 @@ namespace FoodAppUILayer.Controllers
                 foodItem.Image = model.Image;
                 foodItem.CategoryId = model.CategoryId;
                 foodItem.RestId = model.RestId;
-               
+
                 try
                 {
                     foodItemRepository.Save();
-                    return RedirectToAction("AllFoodItems");
+                    return RedirectToAction("AllFoodItems", new { id = model.RestId });
                 }
                 catch (Exception)
                 {
                     ModelState.AddModelError(string.Empty, "An error occurred while processing your request. Please try again later.");
                 }
+            }
             }
 
             return View(model);
@@ -208,22 +231,7 @@ namespace FoodAppUILayer.Controllers
             return RedirectToAction("AllFoodItems");
         }
 
-        //MapToViewModel
-        private FoodItem MapToViewModel(FoodItem foodItem)
-        {
-            return new FoodItem
-            {
-                FoodId = foodItem.FoodId,
-                Availability = foodItem.Availability,
-                Name = foodItem.Name,
-                Image = foodItem.Image,
-                Category = foodItem.Category,
-                Description = foodItem.Description,
-                Restaurant = foodItem.Restaurant,
-                RestId = foodItem.RestId,
-                Price = foodItem.Price,
-            };
-        }
+        
 
 
 

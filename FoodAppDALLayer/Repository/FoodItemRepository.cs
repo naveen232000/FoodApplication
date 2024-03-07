@@ -28,6 +28,11 @@ namespace FoodAppDALLayer.Repository
         {
             return _context.FoodItems.Find(id);
         }
+        public IEnumerable<FoodItem> GetFoodItemByRestId(int restid)
+        {
+            var item = _context.FoodItems.Include(r => r.Category).Where(a => a.RestId == restid);
+            return item;
+        }
 
         public void InsertFoodItem(FoodItem foodItem)
         {

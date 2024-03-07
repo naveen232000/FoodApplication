@@ -37,6 +37,9 @@
                 @Html.DisplayNameFor(model => model.Mobile)
             </th>
             <th class="equal-width">
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th class="equal-width">
                 @Html.DisplayNameFor(model => model.Latitude)
             </th>
             <th class="equal-width">
@@ -64,6 +67,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => restaurant.Mobile)
                 </td>
+                <th class="equal-width">
+                    @Html.DisplayFor(model => restaurant.City)
+                </th>
                 <td>
                     @Html.DisplayFor(modelItem => restaurant.Latitude)
                 </td>

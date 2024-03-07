@@ -36,5 +36,10 @@ namespace FoodAppDALLayer.Models
         // Navigation property
         [ForeignKey("CategoryId")]
         public Category Category { get; set; }
+
+        public object Select(Func<FoodItem, FoodItem> mapToViewModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

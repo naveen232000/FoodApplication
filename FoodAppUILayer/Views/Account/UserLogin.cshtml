@@ -37,7 +37,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @Html.MathCaptcha()
+                <div> @Html.Captcha(5)</div>
+
                 <button type="submit" class="btn btn-outline-primary">Login</button>
                 <a href="@Url.Action("UserResetPassword", "Account")" class="btn btn-outline-danger">Forgot Password?</a>
             </div>

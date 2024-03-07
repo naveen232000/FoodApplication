@@ -83,6 +83,7 @@ namespace FoodAppUILayer.Controllers
                     Mobile = model.Mobile,
                     Latitude = model.Latitude,
                     Longitude = model.Longitude,
+                    RoleId=3
 
                 };
 
@@ -319,7 +320,8 @@ namespace FoodAppUILayer.Controllers
                 Email = user.Email,
                 Mobile = user.Mobile,
                 Password = user.Password,
-                RoleId = user.RoleId
+                RoleId = user.RoleId,
+                Role=user.Role
             };
 
             return View(viewModel);

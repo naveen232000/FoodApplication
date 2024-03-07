@@ -4,21 +4,19 @@
     ViewBag.Title = "DeleteUsr";
 }
 
-<h2>DeleteUsr</h2>
-
+<div class="text-black">
+    <h1>
+        <a href="@Url.Action("AllUsers")" style="color:black !important; text-decoration:none">
+            <i class="bi bi-arrow-left-circle-fill"></i> Delete User
+        </a>
+    </h1>
+</div>
 <h3>Are you sure you want to delete this?</h3>
-<div>
+<div class="p-4" style="background-color:lightgoldenrodyellow">
     <h4>User</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Role.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Role.Name)
-        </dd>
-
+    <dl class="dl-horizontal m-4">
+      
         <dt>
             @Html.DisplayNameFor(model => model.UserName)
         </dt>
@@ -56,9 +54,9 @@
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color mt-3">
+            <input type="submit" value="Delete" class="btn btn-default btn-danger" /> 
+  
         </div>
     }
 </div>

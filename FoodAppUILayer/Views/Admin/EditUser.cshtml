@@ -4,14 +4,20 @@
     ViewBag.Title = "EditUser";
 }
 
-<h2>EditUser</h2>
 
+<div class="text-black">
+    <h1>
+        <a href="@Url.Action("AllUsers")" style="color:black !important; text-decoration:none">
+            <i class="bi bi-arrow-left-circle-fill"></i> Edit User
+        </a>
+    </h1>
+</div>
 
 @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post, new { @class = "col-md-6" }))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+<div class="form-horizontal p-4 " style="background-color:lightcyan">
     <h4>User</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -52,13 +58,9 @@
     </div>
 
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        <div class="col-md-offset-2 col-md-10 mt-3">
+            <input type="submit" value="Save" class="btn btn-default btn-warning" />
         </div>
     </div>
 </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
