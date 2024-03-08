@@ -182,12 +182,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext\FoodAppDbContext.cs" />
+    <Compile Include="Interface\IAddressRepository.cs" />
     <Compile Include="Interface\IAdminRepository.cs" />
     <Compile Include="Interface\ICartRepository.cs" />
     <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\IFoodItemRepository.cs" />
     <Compile Include="Interface\IOrderRepository.cs" />
-    <Compile Include="Interface\IPaymentRepository.cs" />
     <Compile Include="Interface\IRatingRepository.cs" />
     <Compile Include="Interface\IRestaurantRepository.cs" />
     <Compile Include="Interface\IRoleRepository.cs" />
@@ -228,23 +228,83 @@
     <Compile Include="Migrations\202403071238416_added rest image.designer.cs">
       <DependentUpon>202403071238416_added rest image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403071658058_Added Qyt on cart.cs" />
+    <Compile Include="Migrations\202403071658058_Added Qyt on cart.designer.cs">
+      <DependentUpon>202403071658058_Added Qyt on cart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403080122349_total available qyt in fooditems.cs" />
+    <Compile Include="Migrations\202403080122349_total available qyt in fooditems.designer.cs">
+      <DependentUpon>202403080122349_total available qyt in fooditems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403080327288_Cart location.cs" />
+    <Compile Include="Migrations\202403080327288_Cart location.designer.cs">
+      <DependentUpon>202403080327288_Cart location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403080607383_addressmodel.cs" />
+    <Compile Include="Migrations\202403080607383_addressmodel.designer.cs">
+      <DependentUpon>202403080607383_addressmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403080615441_updated address.cs" />
+    <Compile Include="Migrations\202403080615441_updated address.designer.cs">
+      <DependentUpon>202403080615441_updated address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403080724271_update db.cs" />
+    <Compile Include="Migrations\202403080724271_update db.designer.cs">
+      <DependentUpon>202403080724271_update db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081037035_paymentstatus string.cs" />
+    <Compile Include="Migrations\202403081037035_paymentstatus string.designer.cs">
+      <DependentUpon>202403081037035_paymentstatus string.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081113569_Discount added on payment.cs" />
+    <Compile Include="Migrations\202403081113569_Discount added on payment.designer.cs">
+      <DependentUpon>202403081113569_Discount added on payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081230599_Removed orderid from payment.cs" />
+    <Compile Include="Migrations\202403081230599_Removed orderid from payment.designer.cs">
+      <DependentUpon>202403081230599_Removed orderid from payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081240242_Removed REQUIRED TO PAYMENT ID.cs" />
+    <Compile Include="Migrations\202403081240242_Removed REQUIRED TO PAYMENT ID.designer.cs">
+      <DependentUpon>202403081240242_Removed REQUIRED TO PAYMENT ID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081253458_Removed rest id.cs" />
+    <Compile Include="Migrations\202403081253458_Removed rest id.designer.cs">
+      <DependentUpon>202403081253458_Removed rest id.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081311186_Add order and payment.cs" />
+    <Compile Include="Migrations\202403081311186_Add order and payment.designer.cs">
+      <DependentUpon>202403081311186_Add order and payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081312515_Add order and payment2.cs" />
+    <Compile Include="Migrations\202403081312515_Add order and payment2.designer.cs">
+      <DependentUpon>202403081312515_Add order and payment2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081315393_Add order and payment3.cs" />
+    <Compile Include="Migrations\202403081315393_Add order and payment3.designer.cs">
+      <DependentUpon>202403081315393_Add order and payment3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403081400221_removed payment model.cs" />
+    <Compile Include="Migrations\202403081400221_removed payment model.designer.cs">
+      <DependentUpon>202403081400221_removed payment model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\AdminRepository.cs" />
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\FoodItemRepository.cs" />
-    <Compile Include="Repository\PaymentRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\RestaurantRepository.cs" />
@@ -283,6 +343,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403071238416_added rest image.resx">
       <DependentUpon>202403071238416_added rest image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403071658058_Added Qyt on cart.resx">
+      <DependentUpon>202403071658058_Added Qyt on cart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403080122349_total available qyt in fooditems.resx">
+      <DependentUpon>202403080122349_total available qyt in fooditems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403080327288_Cart location.resx">
+      <DependentUpon>202403080327288_Cart location.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403080607383_addressmodel.resx">
+      <DependentUpon>202403080607383_addressmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403080615441_updated address.resx">
+      <DependentUpon>202403080615441_updated address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403080724271_update db.resx">
+      <DependentUpon>202403080724271_update db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081037035_paymentstatus string.resx">
+      <DependentUpon>202403081037035_paymentstatus string.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081113569_Discount added on payment.resx">
+      <DependentUpon>202403081113569_Discount added on payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081230599_Removed orderid from payment.resx">
+      <DependentUpon>202403081230599_Removed orderid from payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081240242_Removed REQUIRED TO PAYMENT ID.resx">
+      <DependentUpon>202403081240242_Removed REQUIRED TO PAYMENT ID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081253458_Removed rest id.resx">
+      <DependentUpon>202403081253458_Removed rest id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081311186_Add order and payment.resx">
+      <DependentUpon>202403081311186_Add order and payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081312515_Add order and payment2.resx">
+      <DependentUpon>202403081312515_Add order and payment2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081315393_Add order and payment3.resx">
+      <DependentUpon>202403081315393_Add order and payment3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403081400221_removed payment model.resx">
+      <DependentUpon>202403081400221_removed payment model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

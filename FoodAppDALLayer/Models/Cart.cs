@@ -27,6 +27,16 @@ namespace FoodAppDALLayer.Models
         public int RestId { get; set; }
         [ForeignKey("RestId")]
         public virtual Restaurant Restaurant { get; set; }
-      
+
+        [Required(ErrorMessage = "Quantity is required.")]
+        public int Quantity { get; set; }
+
+        [Required(ErrorMessage = "Price is required.")]
+        [DataType(DataType.Currency)]
+        public decimal Price { get; set; }
+
+        public double destinationLatitude { get; set; }
+        public double destinationLongitude { get; set; }
+
     }
 }

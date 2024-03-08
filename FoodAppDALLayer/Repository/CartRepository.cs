@@ -44,7 +44,26 @@ namespace FoodAppDALLayer.Repository
         {
             _context.Entry(cart).State = EntityState.Modified;
         }
-
+        public Cart GetCartItemByfIdUid(int foodId, int userId)
+        {
+            return _context.Carts
+                .FirstOrDefault(c => c.FoodId == foodId && c.UserId == userId);
+        }
+        public Cart GetCartItemByCartIdUid(int catrId, int userId)
+        {
+            return _context.Carts
+                .FirstOrDefault(c => c.CartId == catrId && c.UserId == userId);
+        }
+        public List<Cart> GetCartItemsByUserId(int? userId)
+        {
+            return _context.Carts
+                .Where(c => c.UserId == userId)
+                .ToList();
+        }
+        public IEnumerable<Cart> GetCartItemById(int[] cartIds)
+        {
+            return _context.Carts.Where(c => cartIds.Contains(c.CartId)).ToList();
+        }
         public void Save()
         {
             _context.SaveChanges();

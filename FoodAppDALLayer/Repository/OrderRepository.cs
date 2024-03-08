@@ -28,10 +28,21 @@ namespace FoodAppDALLayer.Repository
         {
             return _context.Orders.Find(id);
         }
+        public IEnumerable<Order> GetOrderByodId(int id)
+        {
+            var item = _context.Orders.Include(r => r.FoodItem).Where(a => a.OrderId == id);
+            return item;
+        }
+        public int GetOrderCountByUserId(int id)
+        {
+            return _context.Orders.Count(o => o.UserId == id);
+        }
 
-        public void InsertOrder(Order order)
+        public int InsertOrder(Order order)
         {
             _context.Orders.Add(order);
+            _context.SaveChanges(); // Save changes to generate the order ID
+            return order.OrderId;
         }
 
         public void DeleteOrder(int id)

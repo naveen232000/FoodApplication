@@ -16,6 +16,6 @@ namespace FoodAppDALLayer.Interface
         void DeleteRestaurant(int id);
         void UpdateRestaurant(Restaurant restaurant);
         void Save();
-       
+        void Detach(Restaurant rest);
     }
 }

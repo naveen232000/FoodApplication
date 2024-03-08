@@ -400,11 +400,11 @@ namespace FoodAppUILayer.Controllers
               Qty = order.Qty,
               TotalAmount = order.TotalAmount,
               EstimatedDeliveryTime = order.EstimatedDeliveryTime,
-              Payment=order.Payment,
-              PaymentId=order.PaymentId,
-              
-
-            };
+              PaymentType = order.PaymentType,
+              PaymentStatus = order.PaymentStatus,
+              User=order.User,
+              UserId=order.UserId,
+          };
         }
 
         //Ratings

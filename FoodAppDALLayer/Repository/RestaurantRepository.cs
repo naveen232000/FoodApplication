@@ -4,6 +4,7 @@ using FoodAppDALLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net.PeerToPeer;
 using System.Text;
@@ -54,6 +55,12 @@ namespace FoodAppDALLayer.Repository
         public void Save()
         {
             _context.SaveChanges();
+        }
+        public void Detach(Restaurant entity)
+        {
+            var context = _context as DbContext; 
+            var objectContext = ((IObjectContextAdapter)context).ObjectContext;
+            objectContext.Detach(entity);
         }
     }
 }

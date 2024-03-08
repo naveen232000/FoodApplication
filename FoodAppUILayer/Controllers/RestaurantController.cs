@@ -51,6 +51,7 @@ namespace FoodAppUILayer.Controllers
             {
                 FoodId = foodItem.FoodId,
                 Availability = foodItem.Availability,
+           
                 Name = foodItem.Name,
                 Image = foodItem.Image,
                 Category = foodItem.Category,
@@ -93,6 +94,7 @@ namespace FoodAppUILayer.Controllers
                         FoodId = model.FoodId,
                         Name = model.Name,
                         Availability = model.Availability,
+
                         Description = model.Description,
                         Price = model.Price,
                         Image = model.Image,

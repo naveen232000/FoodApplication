@@ -279,6 +279,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -287,9 +288,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\IndexViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\OrderDetailsViewModel.cs" />
+    <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\ResetPasswordViewModel.cs" />
     <Compile Include="Models\RestaurantViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -386,9 +390,15 @@
     <Content Include="Views\Restaurant\EditFoodItem.cshtml" />
     <Content Include="Views\Restaurant\DeleteFood.cshtml" />
     <Content Include="Views\User\AllRestaurant.cshtml" />
+    <Content Include="Views\User\AllFoodItems.cshtml" />
+    <Content Include="Views\User\ViewCart.cshtml" />
+    <Content Include="Views\User\PlaceOrder.cshtml" />
+    <Content Include="Views\Shared\_AddressLayout.cshtml" />
+    <Content Include="Views\User\OrderConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Address\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

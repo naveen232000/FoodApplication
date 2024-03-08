@@ -20,7 +20,7 @@ namespace FoodAppDALLayer.Models
         public string Image { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
-
+    
         [Required]
         public int RestId { get; set; }
         [ForeignKey("RestId")]

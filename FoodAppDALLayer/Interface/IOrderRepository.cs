@@ -11,7 +11,9 @@ namespace FoodAppDALLayer.Interface
     {
         IEnumerable<Order> GetAllOrders();
         Order GetOrderById(int id);
-        void InsertOrder(Order order);
+        IEnumerable<Order> GetOrderByodId(int id);
+        int GetOrderCountByUserId(int id);
+        int InsertOrder(Order order);
         void DeleteOrder(int id);
         void UpdateOrder(Order order);
         void Save();

@@ -1,0 +1,171 @@
+﻿@model FoodAppUILayer.Models.OrderViewModel
+
+@{
+    ViewBag.Title = "Place Order";
+}
+
+<div class="container">
+    <h3>Order Summary</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.OrderDetails != null)
+            {
+                foreach (var detail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@detail.FoodItemName</td>
+                        <td>@detail.Quantity</td>
+                        <td>@detail.Price</td>
+                        <td>@detail.Subtotal</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="4">No order details available.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p>Delivery Charge: &#8377;<span id="deliveryCharge">100</span></p>
+    <p>Total: &#8377;<span id="totalPrice">@Model.TotalAmount</span></p>
+    <p>SubTotal: &#8377;<span id="subTotalPrice">@Model.TotalAmount</span></p>
+
+    @if (Model.Addresses != null && Model.Addresses.Any())
+    {
+        <h4 class="ms-3">Saved Addresses</h4>
+        <div class="card-deck col-12">
+            @foreach (var savedAddress in Model.Addresses)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Address</h5>
+                        <p class="card-text">
+                            @savedAddress.Street, @savedAddress.City, @savedAddress.State, @savedAddress.PostalCode
+                        </p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="selectedAddressId" value="@savedAddress.Id" id="address_@savedAddress.Id">
+                            <label class="form-check-label" for="address_@savedAddress.Id">
+                                Select Address
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="btn btn-outline-primary ms-3 mb-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Add New Address
+        </button>
+        <div class="collapse" id="collapseExample">
+            @Html.Partial("_AddressLayout", new FoodAppUILayer.Models.AddressViewModel())
+        </div>
+    }
+    else
+    {
+        <div id="newAddressForm">
+            @Html.Partial("_AddressLayout", new FoodAppUILayer.Models.AddressViewModel())
+        </div>
+    }
+
+  
+
+<form id="placeOrderForm" class="ms-3" method="post" action="@Url.Action("OrderConfirm", "User")">
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="subtotal" id="subtotal" value="@Model.TotalAmount" />
+    <input type="hidden" name="userId" value="@Model.UserId" />
+    <select id="paymentType" name="paymentType" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <option selected>Select Payment Method</option>
+        <option value="COD">COD</option>
+    </select>
+    <button type="submit" id="payNowButton" class="btn btn-outline-success">Pay Now</button>
+</form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Check if geolocation is supported by the browser
+            if (navigator.geolocation) {
+                // Prompt the user to enable location
+                var enableLocation = confirm('This website wants to use your location. Allow?');
+                if (enableLocation) {
+                    // If the user allows, get their current position
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var userLatitude = position.coords.latitude;
+                        var userLongitude = position.coords.longitude;
+
+                        // Inside your JavaScript section in the view
+                        var destinationLatitude = @Html.Raw(Json.Encode(Model.destinationLatitude));
+                        var destinationLongitude = @Html.Raw(Json.Encode(Model.destinationLongitude));
+                        console.log(destinationLatitude)
+                        console.log(destinationLongitude)
+                        // Call a function to calculate distance using user's location and destination
+                        var distance = calculateDistance(userLatitude, userLongitude, destinationLatitude, destinationLongitude);
+                        console.log(distance)
+                        var deliveryCharge = calculateDeliveryCharge(distance);
+
+                        $('#deliveryCharge').text(deliveryCharge.toFixed(2));
+
+                        // Update subtotal with delivery charge
+                        updateSubTotal();
+                    }, function (error) {
+                        console.log('Error getting user location:', error.message);
+                    });
+                } else {
+                    console.log('User denied permission to access location.');
+                }
+            } else {
+                console.log('Geolocation is not supported by this browser.');
+            }
+        });
+
+        // Update subtotal with delivery charge
+        function updateSubTotal() {
+            var subtotal = parseFloat($('#totalPrice').text());
+            var deliveryCharge = parseFloat($('#deliveryCharge').text());
+            // Add delivery charge to subtotal
+            var subTotalWithDeliveryCharge = subtotal + deliveryCharge; // Change 100 to your calculated delivery charge
+
+            // Display subtotal with delivery charge
+            $('#subTotalPrice').text(subTotalWithDeliveryCharge.toFixed(2));
+            $('#subtotal').val(subTotalWithDeliveryCharge.toFixed(2));
+        }
+
+        function calculateDistance(userLatitude, userLongitude, destinationLatitude, destinationLongitude) {
+            // Calculate distance using user's location and destination the Haversine formula
+            var R = 6371; // Radius of the Earth in kilometers
+            var dLat = deg2rad(destinationLatitude - userLatitude);
+            var dLon = deg2rad(destinationLongitude - userLongitude);
+            var a =
+                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(deg2rad(userLatitude)) * Math.cos(deg2rad(destinationLatitude)) *
+                Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            var distance = R * c;
+            return distance;
+        }
+
+        // Define the deg2rad function
+        function deg2rad(deg) {
+            return deg * (Math.PI / 180);
+        }
+
+        function calculateDeliveryCharge(distance) {
+            if (distance < 30) {
+                return 48; // Fixed delivery charge for distances less than 30km
+            } else {
+                return distance * 0.5; // Delivery charge of 0.5 Rs/km for distances greater than or equal to 30km
+            }
+        }
+    </script>
+}
