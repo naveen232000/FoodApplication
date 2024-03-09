@@ -84,6 +84,8 @@ namespace FoodAppUILayer.Controllers
             return View(foodItemModel);
 
         }
+       
+
         //MapToViewModel for fooditems
         private FoodItem MapToViewModel(FoodItem foodItem)
         {
@@ -148,7 +150,7 @@ namespace FoodAppUILayer.Controllers
                 cartRepository.Save();
 
             }
-
+            TempData["Success"] = "Item Added to Cart successfully";
 
             return RedirectToAction("AllRestaurant");
         }
@@ -299,8 +301,6 @@ namespace FoodAppUILayer.Controllers
                 order.TotalAmount = total;
                 Session["OrderViewModel"] = order;
 
-                // Other logic (e.g., payment processing) can be added here
-
                 return View(order);
             }
         }
@@ -308,10 +308,12 @@ namespace FoodAppUILayer.Controllers
         [HttpPost]
         public ActionResult OrderConfirm(int userId, decimal subtotal, string paymentType)
         {
+            var sectionaddrs = Session["OrderViewModel"] as OrderViewModel;
+            var addresses = sectionaddrs.Addresses;
             // Retrieve cart items
             var cartItems = cartRepository.GetCartItemsByUserId(userId);
             var user = userRepository.GetUserById(userId);
-            var address = addressRepository.GetAddressesByUserId(userId);
+            var address = addressRepository.GetAddressesById(addresses.First().Id);
             int rid = cartItems.FirstOrDefault().RestId;
             var rest = restaurantRepository.GetRestaurantById(rid);
             restaurantRepository.Detach(rest);

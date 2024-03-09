@@ -23,7 +23,10 @@ namespace FoodAppDALLayer.Repository
         {
             return _dbContext.Addresses.Where(a => a.UserId == userId).ToList();
         }
-
+        public IEnumerable<Address> GetAddressesById(int id)
+        {
+            return _dbContext.Addresses.Where(a => a.Id == id).ToList();
+        }
         public void SaveAddress(Address address)
         {
             _dbContext.Addresses.Add(address);

@@ -288,6 +288,10 @@
     <Compile Include="Migrations\202403081400221_removed payment model.designer.cs">
       <DependentUpon>202403081400221_removed payment model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403090200229_reqired validation.cs" />
+    <Compile Include="Migrations\202403090200229_reqired validation.designer.cs">
+      <DependentUpon>202403090200229_reqired validation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -388,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403081400221_removed payment model.resx">
       <DependentUpon>202403081400221_removed payment model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403090200229_reqired validation.resx">
+      <DependentUpon>202403090200229_reqired validation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

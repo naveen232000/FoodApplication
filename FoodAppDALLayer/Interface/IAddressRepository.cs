@@ -10,6 +10,7 @@ namespace FoodAppDALLayer.Interface
     public interface IAddressRepository
     {
         IEnumerable<Address> GetAddressesByUserId(int userId);
+        IEnumerable<Address> GetAddressesById(int id);
         void SaveAddress(Address address);
         void Detach(Address rest);
 

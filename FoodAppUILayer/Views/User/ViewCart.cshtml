@@ -3,10 +3,8 @@
     ViewBag.Title = "ViewCart";
 }
 
-<h2>ViewCart</h2>
-
 <style>
-  
+
     .quantity-column {
         width: 150px;
     }
@@ -60,11 +58,11 @@
         </table>
 
         <p>Total: &#8377;<span id="totalPrice">@Model.Sum(item => item.Quantity * item.Price)</span></p>
-        
 
-        
-        <a href="@Url.Action("PlaceOrder", new { userId = @Session["UserId"] })" class="btn btn-danger"  text-decoration:none">
-            <i class="bi bi-arrow-left-circle-fill"></i> Place Order
+
+
+        <a href="@Url.Action("PlaceOrder", new { userId = @Session["UserId"] })" class="btn btn-success" text-decoration:none">
+             Place Order <i class="bi bi-arrow-right-circle-fill"></i>
         </a>
 
     }
@@ -76,49 +74,41 @@
 
 @section Scripts {
     <script>
-           
-        //Updateqyt
+
         function updateQuantity(cartId, change) {
             var quantityInput = $('#quantity_' + cartId);
             var subTotal = $('#subtotal_' + cartId);
             var currentQuantity = parseInt(quantityInput.val());
             var newQuantity = currentQuantity + change;
 
-            // Ensure the quantity is not less than 1
             if (newQuantity < 1) {
                 alert('Minimum quantity is 1. To remove the product, click "Remove".');
                 return;
             }
-
             quantityInput.val(newQuantity);
 
-            // Make AJAX call to update the quantity and subtotal in the database
             $.ajax({
                 url: '/User/UpdateCartQuantity',
                 type: 'POST',
                 data: { cartId: cartId, newQuantity: newQuantity },
                 success: function (response) {
                     if (response.success) {
-                        // Update the subtotal on the UI
                         $('#subtotal_' + cartId).text(response.subtotal.toFixed(2));
 
-                        // Update the total price on the UI
                         var total = calculateTotal();
                         $('#totalPrice').text(total.toFixed(2));
-                      
+
                     } else {
-                        // Display the error message
                         alert(response.errorMessage);
 
-                        // If the quantity update is not successful, revert the input value
                         quantityInput.val(currentQuantity);
                     }
                 },
                 error: function () {
-                    // Handle AJAX error if needed
+
                     alert('An error occurred while updating the cart.');
 
-                    // If there is an AJAX error, revert the input value
+
                     quantityInput.val(currentQuantity);
                 }
             });

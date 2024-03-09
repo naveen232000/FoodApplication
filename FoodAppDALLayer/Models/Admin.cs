@@ -29,6 +29,7 @@ namespace FoodAppDALLayer.Models
         [Required]
         public string UserName { get; set; }
 
+        [Required(ErrorMessage = "Please Enter Password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
