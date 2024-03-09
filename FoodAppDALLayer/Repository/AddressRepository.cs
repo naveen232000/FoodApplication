@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Remoting.Contexts;
 
 namespace FoodAppDALLayer.Repository
 {
@@ -31,6 +32,11 @@ namespace FoodAppDALLayer.Repository
         {
             _dbContext.Addresses.Add(address);
             _dbContext.SaveChanges();
+        }
+        public void DeleteAddress(int adsid)
+        {
+            Address adrs = _dbContext.Addresses.Find(adsid);
+            _dbContext.Addresses.Remove(adrs);
         }
         public void Detach(Address entity)
         {

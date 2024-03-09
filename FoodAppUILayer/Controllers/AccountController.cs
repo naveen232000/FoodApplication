@@ -118,6 +118,8 @@ namespace FoodAppUILayer.Controllers
                     Email = model.Email,
                     Mobile = model.Mobile,
                     Password = model.Password,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
                     RoleId = 2
                 };
 

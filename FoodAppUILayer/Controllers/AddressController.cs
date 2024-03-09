@@ -1,5 +1,6 @@
 ﻿using FoodAppDALLayer.Interface;
 using FoodAppDALLayer.Models;
+using FoodAppDALLayer.Repository;
 using FoodAppUILayer.Models;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,13 @@ namespace FoodAppUILayer.Controllers
         public class AddressController : Controller
         {
             private IAddressRepository AddressRepository;
-            private readonly ICartRepository cartRepository;
 
-            // GET: Address
-            public AddressController(IAddressRepository addressRepository
-                , ICartRepository cartRepository)
+
+        // GET: Address
+        public AddressController(IAddressRepository addressRepository)
             {
                 AddressRepository = addressRepository;
-                this.cartRepository = cartRepository;
+            
             }
             public ActionResult Address()
             {
@@ -33,7 +33,14 @@ namespace FoodAppUILayer.Controllers
             public ActionResult SaveAddress(AddressViewModel address)
             {
                 int customerId = (int)Session["UserId"];
-                Address saverAddress = new Address
+                var UserAddress = AddressRepository.GetAddressesByUserId(customerId);
+            foreach (var item in UserAddress)
+            {
+                AddressRepository.DeleteAddress(item.Id);
+                
+            }
+
+            Address saverAddress = new Address
                 {
                     Id = address.Id,
                     State = address.State,
@@ -44,9 +51,9 @@ namespace FoodAppUILayer.Controllers
                     UserId = customerId
                 };
 
-                // After successfully adding the address, you can set a TempData flag
+               
                 AddressRepository.SaveAddress(saverAddress);
-                TempData["AddressAdded"] = true;
+               
                 return RedirectToAction("PlaceOrder", "User", new { cartIds = Convert.ToInt32(null), UserId = customerId });
             }
         }

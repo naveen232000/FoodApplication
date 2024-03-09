@@ -1,37 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FoodAppDALLayer.Models
 {
     public class Restaurant
     {
         [Key]
-        [Required]
+
         public int RestId { get; set; }
-        [Required, StringLength(100)]
+
+        [Required(ErrorMessage = "Name is required.")]
+        [StringLength(150, ErrorMessage = "Name cannot exceed 100 characters.")]
         public string Name { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Address is required.")]
         public string Address { get; set; }
-        
-       
-        [Required, EmailAddress]
+
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
         public string Email { get; set; }
-        [Required, Phone, RegularExpression(@"^(\+\d{1,3}[- ]?)?\d{10}$", ErrorMessage = "Not a valid phone number")]
+
+        [Required(ErrorMessage = "Mobile number is required.")]
+        [Phone(ErrorMessage = "Invalid phone number.")]
+        [RegularExpression(@"^(\+\d{1,3}[- ]?)?\d{10}$", ErrorMessage = "Not a valid phone number.")]
         public string Mobile { get; set; }
-        //[Required]
-        //public string Qty { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Latitude is required.")]
         public double Latitude { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Longitude is required.")]
         public double Longitude { get; set; }
 
+        [Required(ErrorMessage = "City is required.")]
         public string City { get; set; }
         public string Image { get; set; }
+
+        [Required(ErrorMessage = "Role ID is required.")]
         public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]

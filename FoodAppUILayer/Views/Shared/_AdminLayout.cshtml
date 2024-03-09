@@ -43,25 +43,24 @@
 
                 </ul>
 
+
+                <p class="text-white mt-2">
+                    <span class="avatar">
+                        @{
+                            string userName = (string)Session["UserName"];
+                            char firstLetter = userName[0];
+                            @firstLetter
+                        }
+                    </span> @Session["UserName"]
+                </p>
             </div>
-            <p class="text-white">
-                <span class="avatar">
-                    @{
-                        string userName = (string)Session["UserName"];
-                        char firstLetter = userName[0];
-                        @firstLetter
-                    }
-                </span> @Session["UserName"]
-            </p>
         </div>
     </nav>
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+     
+     
     </div>
 
     @Scripts.Render("~/bundles/jquery")

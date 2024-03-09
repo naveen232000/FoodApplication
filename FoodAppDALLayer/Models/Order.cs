@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodAppDALLayer.Models
 {
@@ -12,35 +8,50 @@ namespace FoodAppDALLayer.Models
     {
         [Key, Required]
         public int OrderId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Food ID is required.")]
         public int FoodId { get; set; }
+
         [ForeignKey("FoodId")]
         public virtual FoodItem FoodItem { get; set; }
+
+        [Required(ErrorMessage = "User ID is required.")]
         public int UserId { get; set; }
+
         [ForeignKey("UserId")]
         public virtual User User { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Quantity is required.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantity must be a positive value.")]
         public int Qty { get; set; }
-        [Required, DataType(DataType.Currency)]
+
+        [Required(ErrorMessage = "Total amount is required.")]
+        [DataType(DataType.Currency)]
         public decimal TotalAmount { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Delivery address is required.")]
         public string DeliveryAddress { get; set; }
-        [Required, DataType(DataType.Currency)]
+
+        [Required(ErrorMessage = "Delivery charge is required.")]
+        [DataType(DataType.Currency)]
         public decimal DeliveryCharge { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Order status is required.")]
         public string OrderStatus { get; set; }
-     
-        [Required]
+
+        [Required(ErrorMessage = "Estimated delivery time is required.")]
         public DateTime EstimatedDeliveryTime { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Date of order is required.")]
         public DateTime DateOfOrder { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Payment type is required.")]
         public string PaymentType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Payment status is required.")]
         [MaxLength(255)]
         public string PaymentStatus { get; set; }
+
         public decimal Discount { get; set; }
     }
 }

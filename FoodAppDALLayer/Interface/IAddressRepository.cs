@@ -11,6 +11,7 @@ namespace FoodAppDALLayer.Interface
     {
         IEnumerable<Address> GetAddressesByUserId(int userId);
         IEnumerable<Address> GetAddressesById(int id);
+        void DeleteAddress(int adsid);
         void SaveAddress(Address address);
         void Detach(Address rest);
 

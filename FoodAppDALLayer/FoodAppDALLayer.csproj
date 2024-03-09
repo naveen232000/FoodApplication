@@ -292,6 +292,26 @@
     <Compile Include="Migrations\202403090200229_reqired validation.designer.cs">
       <DependentUpon>202403090200229_reqired validation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403090756579_validation Updated.cs" />
+    <Compile Include="Migrations\202403090756579_validation Updated.designer.cs">
+      <DependentUpon>202403090756579_validation Updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403090804034_validation Updated user.cs" />
+    <Compile Include="Migrations\202403090804034_validation Updated user.designer.cs">
+      <DependentUpon>202403090804034_validation Updated user.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403090817085_validation Updated user2.cs" />
+    <Compile Include="Migrations\202403090817085_validation Updated user2.designer.cs">
+      <DependentUpon>202403090817085_validation Updated user2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403090954465_Added firstname and lastname.cs" />
+    <Compile Include="Migrations\202403090954465_Added firstname and lastname.designer.cs">
+      <DependentUpon>202403090954465_Added firstname and lastname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403091256227_Added Rating food id.cs" />
+    <Compile Include="Migrations\202403091256227_Added Rating food id.designer.cs">
+      <DependentUpon>202403091256227_Added Rating food id.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -395,6 +415,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403090200229_reqired validation.resx">
       <DependentUpon>202403090200229_reqired validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403090756579_validation Updated.resx">
+      <DependentUpon>202403090756579_validation Updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403090804034_validation Updated user.resx">
+      <DependentUpon>202403090804034_validation Updated user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403090817085_validation Updated user2.resx">
+      <DependentUpon>202403090817085_validation Updated user2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403090954465_Added firstname and lastname.resx">
+      <DependentUpon>202403090954465_Added firstname and lastname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403091256227_Added Rating food id.resx">
+      <DependentUpon>202403091256227_Added Rating food id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

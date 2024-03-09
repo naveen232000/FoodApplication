@@ -32,10 +32,6 @@ namespace FoodAppUILayer.Controllers
             return View(categorieViewModels);
         }
 
-        //private new ActionResult View(object categoryViewModels)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public ActionResult AddCategory()
         {
@@ -135,17 +131,11 @@ namespace FoodAppUILayer.Controllers
             Category categoryToDelete = _categoryRepository.GetCategoryById(id);
             if (categoryToDelete != null)
             {
-                // Delete the category from the repository
+
                 _categoryRepository.DeleteCategory(categoryToDelete);
 
-                // Save changes to the database
-                // Assuming you have a SaveChanges method in your repository
             }
-            // Optionally, you can handle the case where the category doesn't exist
-            // else
-            // {
-            //     // Handle the case where the category is not found
-            // }
+            
             return RedirectToAction("Index");
         }
     }

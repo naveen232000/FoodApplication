@@ -15,28 +15,39 @@ namespace FoodAppDALLayer.Models
         public int Id { get; set; }
 
         [MaxLength(50)]
+        [Display(Name = "First Name")]
+        [RegularExpression(@"^[a-zA-Z]{1,50}$", ErrorMessage = "Enter only letters")]
+        [Required(ErrorMessage = "First name is required.")]
         public string FirstName { get; set; }
 
         [MaxLength(50)]
+        [Display(Name = "Last Name")]
+        [RegularExpression(@"^[a-zA-Z]{1,50}$", ErrorMessage = "Enter only letters")]
         public string LastName { get; set; }
 
         [MaxLength(255)]
-        [Required, EmailAddress, Index(IsUnique = true)]
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email address.")]
+        [Index(IsUnique = true)]
         public string Email { get; set; }
 
-        [Required, Phone, RegularExpression(@"^(\+\d{1,3}[- ]?)?\d{10}$", ErrorMessage = "Not a valid phone number")]
+        [Required(ErrorMessage = "Phone number is required.")]
+        [Phone(ErrorMessage = "Invalid phone number.")]
+        [RegularExpression(@"^[0-9]{10}$", ErrorMessage = "Not a valid phone number.")]
         public string PhoneNumber { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Username is required.")]
         public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Please Enter Password")]
+        [Required(ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
+        [RegularExpression(@"^(?=.[A-Za-z])(?=.\d)(?=.[@$!%#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Password must be at least 8 characters long and contain at least one letter, one digit, and one special character.")]
         public string Password { get; set; }
 
         public int RoleId { get; set; }
 
         [ForeignKey("RoleId")]
         public virtual Role Role { get; set; }
-
     }
+
 }

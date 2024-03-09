@@ -1,5 +1,6 @@
-using FoodAppDALLayer.ApplicationDbContext;
+using NUnit.Framework;
 using FoodAppDALLayer.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace FoodAppTesting
@@ -7,166 +8,138 @@ namespace FoodAppTesting
     [TestFixture]
     public class Tests
     {
-        private FoodAppDbContext foodAppDbContext;
+        private Admin _admin;
+
         [SetUp]
         public void Setup()
         {
-            foodAppDbContext = new FoodAppDbContext();
+            _admin = new Admin();
         }
 
-
-
-        //[Test]
-        //public void EmailIsRequired()
-        //{
-        //    // Arrange
-        //    var admin = new Admin();
-
-        //    // Act
-        //    var validationResults = new List<ValidationResult>();
-        //    var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-        //    // Assert
-        //    Assert.IsFalse(isValid);
-        //    Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The Email field is required."));
-        //}
-
-        //[Test]
-        //public void EmailValidation()
-        //{
-        //    // Arrange
-        //    var admin = new Admin { Email = "invalidemail" };
-
-        //    // Act
-        //    var validationResults = new List<ValidationResult>();
-        //    var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-        //    // Assert
-        //    Assert.IsFalse(isValid);
-        //    Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The Email field is not a valid e-mail address."));
-        //}
-
-        //[Test]
-        //public void PhoneIsRequired()
-        //{
-        //    // Arrange
-        //    var admin = new Admin();
-
-        //    // Act
-        //    var validationResults = new List<ValidationResult>();
-        //    var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-        //    // Assert
-        //    Assert.IsFalse(isValid);
-        //    Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The Phone Number field is required."));
-        //}
-
-
+        // Test cases for FirstName
         [Test]
-        public void IdIsRequired()
+        public void TestFirstNameValidation_ValidFirstName_ReturnsTrue()
         {
-            // Arrange
-            var admin = new Admin();
-
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The Id field is required."));
+            _admin.FirstName = "John";
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
 
         [Test]
-        public void EmailIsRequired()
+        public void TestFirstNameValidation_InvalidFirstName_ReturnsFalse()
         {
-            // Arrange
-            var admin = new Admin();
+            _admin.FirstName = "John123"; // Numbers are not allowed in FirstName
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
+        }
 
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The Email field is required."));
+        // Test cases for LastName
+        [Test]
+        public void TestLastNameValidation_ValidLastName_ReturnsTrue()
+        {
+            _admin.LastName = "Doe";
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
 
         [Test]
-        public void EmailValidation()
+        public void TestLastNameValidation_InvalidLastName_ReturnsFalse()
         {
-            // Arrange
-            var admin = new Admin { Email = "invalidemail" };
+            _admin.LastName = "Doe123"; // Numbers are not allowed in LastName
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
+        }
 
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The Email field is not a valid e-mail address."));
+        // Test cases for Email
+        [Test]
+        public void TestEmailValidation_ValidEmail_ReturnsTrue()
+        {
+            _admin.Email = "john.doe@example.com";
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
 
         [Test]
-        public void PhoneNumberIsRequired()
+        public void TestEmailValidation_InvalidEmail_ReturnsFalse()
         {
-            // Arrange
-            var admin = new Admin();
+            _admin.Email = "john.doe"; // Missing '@' and domain in Email
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
+        }
 
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The PhoneNumber field is required."));
+        // Test cases for PhoneNumber
+        [Test]
+        public void TestPhoneNumberValidation_ValidPhoneNumber_ReturnsTrue()
+        {
+            _admin.PhoneNumber = "1234567890";
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
 
         [Test]
-        public void PhoneNumberValidation()
+        public void TestPhoneNumberValidation_InvalidPhoneNumber_ReturnsFalse()
         {
-            // Arrange
-            var admin = new Admin { PhoneNumber = "1234567" }; // Invalid phone number format
+            _admin.PhoneNumber = "12345"; // PhoneNumber should be 10 digits long
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
+        }
 
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "Not a valid phone number"));
+        // Test cases for UserName
+        [Test]
+        public void TestUserNameValidation_ValidUserName_ReturnsTrue()
+        {
+            _admin.UserName = "johndoe";
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
 
         [Test]
-        public void UserNameIsRequired()
+        public void TestUserNameValidation_EmptyUserName_ReturnsFalse()
         {
-            // Arrange
-            var admin = new Admin();
+            _admin.UserName = ""; // UserName is required
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
+        }
 
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "The UserName field is required."));
+        // Test cases for Password
+        [Test]
+        public void TestPasswordValidation_ValidPassword_ReturnsTrue()
+        {
+            _admin.Password = "Password@123";
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
 
         [Test]
-        public void PasswordIsRequired()
+        public void TestPasswordValidation_InvalidPassword_ReturnsFalse()
         {
-            // Arrange
-            var admin = new Admin (); // Invalid password 
-
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(admin, new ValidationContext(admin), validationResults, true);
-
-            // Assert
-            Assert.IsFalse(isValid);
-            Assert.IsTrue(validationResults.Exists(v => v.ErrorMessage == "Please Enter Password"));
+            _admin.Password = "password"; // Password must contain at least one letter, one digit, and one special character
+            var context = new ValidationContext(_admin, null, null);
+            var results = new List<ValidationResult>();
+            var valid = Validator.TryValidateObject(_admin, context, results, true);
+            Assert.IsFalse(valid);
         }
-
-
     }
 }

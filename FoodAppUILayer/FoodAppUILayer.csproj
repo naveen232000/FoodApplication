@@ -283,6 +283,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -332,6 +333,7 @@
     <Content Include="Images\Img4.jpg" />
     <Content Include="Images\Img5.jpg" />
     <Content Include="Images\success.png" />
+    <Content Include="Images\userlogin.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -396,6 +398,9 @@
     <Content Include="Views\User\PlaceOrder.cshtml" />
     <Content Include="Views\Shared\_AddressLayout.cshtml" />
     <Content Include="Views\User\OrderConfirmation.cshtml" />
+    <Content Include="Views\Rating\AddRatings.cshtml" />
+    <Content Include="Views\Rating\ThankYou.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,11 +9,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <style>
         .avatar {
-            background-color: #007BFF;
+            background-color: darkblue;
             border-radius: 50%;
             text-align: center;
             display: inline-block;
@@ -42,18 +40,18 @@
                     <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
 
+
+                <p class="text-white mt-2">
+                    <a href="@Url.Action("EditUser", new { id = Session["UserId"] })" class="avatar text-white">
+                        @{
+                            string userName = (string)Session["UserName"];
+
+                            char firstLetter = userName[0];
+                            @firstLetter
+                        }<i class="bi bi-pencil-square"></i>
+                    </a> @Session["UserName"]
+                </p>
             </div>
-
-            <p class="text-white">
-                <span class="avatar">
-                    @{
-                        string userName = (string)Session["UserName"];
-
-                        char firstLetter = userName[0];
-                        @firstLetter
-                    }
-                </span> @Session["UserName"]
-            </p>
         </div>
     </nav>
 

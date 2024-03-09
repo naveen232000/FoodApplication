@@ -33,6 +33,11 @@ namespace FoodAppDALLayer.Repository
             var item = _context.Orders.Include(r => r.FoodItem).Where(a => a.OrderId == id);
             return item;
         }
+        public IEnumerable<Order> GetOrderByUserId(int id)
+        {
+            var item = _context.Orders.Include(r => r.FoodItem).Where(a => a.UserId == id);
+            return item;
+        }
         public int GetOrderCountByUserId(int id)
         {
             return _context.Orders.Count(o => o.UserId == id);

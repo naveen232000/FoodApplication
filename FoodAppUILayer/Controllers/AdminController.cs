@@ -226,6 +226,7 @@ namespace FoodAppUILayer.Controllers
                Latitude = restaurants.Latitude,
                Longitude = restaurants.Longitude,
                Image = restaurants.Image,
+               City = restaurants.City,
             };
         }
 
@@ -423,11 +424,11 @@ namespace FoodAppUILayer.Controllers
            RatingId = rating.RatingId,
            RatingCount = rating.RatingCount,
            Comments = rating.Comments,
-           Like = rating.Like,
-           FoodId = rating.FoodId,
+       
+     
            UserId = rating.UserId,
            User= rating.User,
-           FoodItem= rating.FoodItem,
+  
             };
         }
     }

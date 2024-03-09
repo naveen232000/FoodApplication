@@ -3,96 +3,99 @@
 @{
     ViewBag.Title = "OrderConfirmation";
 }
- <style>
-        .card {
-            border: none;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
+<style>
+    .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
 
-        .card-body {
-            padding: 20px;
-        }
+    .card-body {
+        padding: 20px;
+    }
 
-        .card-logo {
-            width: 100px;
-            height: 100px;
-            margin: 20px auto;
-            display: block;
-        }
+    .card-logo {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        display: block;
+    }
 
-        .card-title {
-            color: #007BFF;
+    .card-title {
+        color: #007BFF;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    .card-text {
+        color: #6c757d;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007BFF;
+        border: none;
+        color: white;
+    }
+
+
+    .card-text table {
+        width: 100%;
+    }
+
+        .card-text table td:first-child {
+            width: 30%;
             font-weight: bold;
-            margin-top: 20px;
         }
+</style>
 
-        .card-text {
-            color: #6c757d;
-            margin-bottom: 20px;
-        }
-
-        .btn-primary {
-            background-color: #007BFF;
-            border: none;
-            color: white;
-        }
-
-    
-        .card-text table {
-            width: 100%;
-        }
-
-            .card-text table td:first-child {
-                width: 30%; 
-                font-weight: bold;
-            }
-    </style>
-
-    <div class="container mt-5">
-        <h2 class="text-center text-primary">Order Confirmation</h2>
-        @foreach (var item in Model)
-        {
-            <div class="card mt-3">
-                <div class="card-body">
-                    <!-- Removed text-center class -->
-                    <div class="card-logo">
-                        <img src="~/Images/success.png" width="100" height="100" />
-                    </div>
-                    <h5 class="card-title">Order Id: @Html.DisplayFor(modelItem => item.OrderId)</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Order Date: @Html.DisplayFor(modelItem => item.DateOfOrder)</h6>
-                    <div class="card-text">
-                        <table>
-                            <tr>
-                                <td>Qyt:</td>
-                                <td>@Html.DisplayFor(modelItem => item.Qty)</td>
-                            </tr>
-                            <tr>
-                                <td>Discount:</td>
-                                <td>@Html.DisplayFor(modelItem => item.Discount) %</td>
-                            </tr>
-                            <tr>
-                                <td>Total Amount</td>
-                                <td>@Html.DisplayFor(modelItem => item.TotalAmount) %</td>
-                            </tr>
-                            <tr>
-                                <td>Delivery Address:</td>
-                                <td>@Html.DisplayFor(modelItem => item.DeliveryAddress)</td>
-                            </tr>
-                            <tr>
-                                <td>Payment Type:</td>
-                                <td>@Html.DisplayFor(modelItem => item.PaymentType)</td>
-                            </tr>
-                            <tr>
-                                <td>Estimated Delivery Time:</td>
-                                <td>@Html.DisplayFor(modelItem => item.EstimatedDeliveryTime)</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <a href="@Url.Action("AllRestaurant")" class="btn btn-info">Continue Order</a>
+<div class="container mt-5">
+    <h2 class="text-center text-primary">Order Confirmation</h2>
+    @foreach (var item in Model)
+    {
+        <div class="card mt-3">
+            <div class="card-body">
+                <!-- Removed text-center class -->
+                <div class="card-logo">
+                    <img src="~/Images/success.png" width="100" height="100" />
                 </div>
+                <h5 class="card-title">Order Id: @Html.DisplayFor(modelItem => item.OrderId)</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Order Date: @Html.DisplayFor(modelItem => item.DateOfOrder)</h6>
+                <div class="card-text">
+                    <table>
+                        <tr>
+                            <td>Qyt:</td>
+                            <td>@Html.DisplayFor(modelItem => item.Qty)</td>
+                        </tr>
+                        <tr>
+                            <td>Discount:</td>
+                            <td>@Html.DisplayFor(modelItem => item.Discount) %</td>
+                        </tr>
+                        <tr>
+                            <td>Total Amount</td>
+                            <td>@Html.DisplayFor(modelItem => item.TotalAmount) %</td>
+                        </tr>
+                        <tr>
+                            <td>Delivery Address:</td>
+                            <td>@Html.DisplayFor(modelItem => item.DeliveryAddress)</td>
+                        </tr>
+                        <tr>
+                            <td>Payment Type:</td>
+                            <td>@Html.DisplayFor(modelItem => item.PaymentType)</td>
+                        </tr>
+                        <tr>
+                            <td>Estimated Delivery Time:</td>
+                            <td>@Html.DisplayFor(modelItem => item.EstimatedDeliveryTime)</td>
+                        </tr>
+                    </table>
+                </div>
+                <a href="@Url.Action("AddRatings")" class="btn btn-info">Continue Order</a>
+                <a href="@Url.Action("AddRatings" , "Rating", new {id=item.FoodId})" class="btn btn-info">Give Your Rating here</a>
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>
+
+

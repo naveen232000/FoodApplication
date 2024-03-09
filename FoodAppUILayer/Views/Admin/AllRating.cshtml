@@ -10,15 +10,11 @@
 <table class="table">
     <thead class="table-success">
         <tr>
-            <th>
-                <p>Food Name</p>
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.User.UserName)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Like)
-            </th>
+         
             <th>
                 @Html.DisplayNameFor(model => model.Comments)
             </th>
@@ -32,15 +28,11 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FoodItem.Name)
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.User.UserName)
                 </td>
-                <td>
-                    <i class="bi bi-suit-heart-fill" style="color:@(item.Like ? "red" : "none");"></i>
-                </td>
+               
                 <td>
                     @Html.DisplayFor(modelItem => item.Comments)
                 </td>

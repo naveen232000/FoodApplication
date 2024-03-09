@@ -324,13 +324,13 @@ namespace FoodAppUILayer.Controllers
             if (order == 0)
             {
                 discount = 10;
-                subtotal = subtotal * (discount / 100);
-            
+                subtotal = subtotal - (subtotal * (discount / 100));
+
             }
             else if(order >3)
             {
                 discount = 30;
-                subtotal = subtotal * (discount / 100);
+                subtotal = subtotal - (subtotal * (discount / 100));
             }
             // Get the current DateTime
             DateTime now = DateTime.Now;
@@ -377,6 +377,69 @@ namespace FoodAppUILayer.Controllers
             return View(order);
         }
 
+        //edit user
+        public ActionResult EditUser(int id)
+        {
+            var user = userRepository.GetUserById(id);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "User not found.");
+                return View();
+            }
+
+            var viewModel = new User
+            {
+                UserId = id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                Email = user.Email,
+                Mobile = user.Mobile,
+                Password = user.Password,
+                RoleId = user.RoleId
+            };
+
+            return View(viewModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditUser(User model)
+        {
+            if (ModelState.IsValid)
+            {
+                Console.WriteLine(model.UserId);
+                var user = userRepository.GetUserById(model.UserId);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "user not found.");
+                    return View(model);
+                }
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.UserName = model.UserName;
+                user.UserName = model.UserName;
+                user.Email = model.Email;
+                user.Mobile = model.Mobile;
+                user.Password=user.Password;
+                user.RoleId = user.RoleId;
+
+                
+                try
+                {
+                    userRepository.Save();
+                    TempData["Success"] = "Profile Edited Successfully";
+                    return RedirectToAction("AllRestaurant");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(string.Empty, "An error occurred while processing your request. Please try again later.");
+                }
+            }
+
+            return View(model);
+        }
 
     }
 }

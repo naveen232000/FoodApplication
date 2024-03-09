@@ -1,4 +1,4 @@
-﻿@model  FoodAppUILayer.Models.LoginViewModel
+﻿@model FoodAppUILayer.Models.LoginViewModel
 @using CaptchaMvc.HtmlHelpers
 
 @{
@@ -6,45 +6,50 @@
 }
 
 
-<div class=" container col-6 pt-2 " style="margin-left:390px">
-    <h2 class="p-3 ms-3">User Login</h2>
-    <p class="text-success">@TempData["SuccessMessage"]</p>
+<div class="container mt-3" style="background-image: url('@Url.Content("~/Images/userlogin.jpg")'); background-size:cover;">
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @using (Html.BeginForm("UserLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-group">
-            <div class="col-12">
-                @Html.LabelFor(m => m.UserName, "Enter Username :", new { @class = "control-label " })
-            </div>
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.UserName)
+    <div class="row">
+        <div class="col m-4 w-100 h-100">
+            <div class="col-12 text-white">
+                <h1>Welcome!</h1>
             </div>
         </div>
+        <div class="col mt-4 mb-4 text-white">
+            <h2>User Login</h2>
+            @using (Html.BeginForm("UserLogin", "Account", FormMethod.Post, new { @class = "col-md-6" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal text-white">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            @Html.Captcha(5)
 
-        <div class="form-group">
-            <div class="col-12">
-                @Html.LabelFor(m => m.Password, "Enter Password :", new { @class = "control-label " })
-            </div>
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
+                            <button type="submit" class="btn btn-outline-primary">Login</button>
+                            <a href="@Url.Action("UserResetPassword", "Account")" class="btn btn-outline-danger">Forgot Password?</a>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div> @Html.Captcha(5)</div>
-
-                <button type="submit" class="btn btn-outline-primary">Login</button>
-                <a href="@Url.Action("UserResetPassword", "Account")" class="btn btn-outline-danger">Forgot Password?</a>
-            </div>
-        </div>
-    }
+    </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

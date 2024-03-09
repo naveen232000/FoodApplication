@@ -21,7 +21,7 @@ namespace FoodAppDALLayer.Repository
 
         public IEnumerable<Rating> GetAllRatings()
         {
-            return _context.Ratings.Include(r => r.FoodItem).Include(u => u.User).ToList();
+            return _context.Ratings.Include(u => u.User).ToList();
         }
 
         public Rating GetRatingById(int id)
