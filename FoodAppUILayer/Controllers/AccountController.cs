@@ -216,12 +216,15 @@ namespace FoodAppUILayer.Controllers
             }
         }
         //logout
+        [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Logout()
         {
+        
             Session.Abandon();
             FormsAuthentication.SignOut();
             ViewBag.IsLoggedOut = "true";
             return RedirectToAction("Index", "Home");
         }
+
     }
 }

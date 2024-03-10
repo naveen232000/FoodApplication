@@ -19,7 +19,7 @@ namespace FoodAppUILayer.Controllers
         {
 
         }
-        //private readonly IWebHostEnvironment _webHostEnvironment;
+     
         private readonly IFoodItemRepository foodItemRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly IRestaurantRepository restaurantRepository;

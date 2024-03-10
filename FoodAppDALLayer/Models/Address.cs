@@ -33,5 +33,11 @@ namespace FoodAppDALLayer.Models
 
         public int UserId { get; set; }
         public virtual User User { get; set; }
+
+        [Required(ErrorMessage = "Latitude is required.")]
+        public double Latitude { get; set; }
+
+        [Required(ErrorMessage = "Longitude is required.")]
+        public double Longitude { get; set; }
     }
 }

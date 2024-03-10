@@ -49,7 +49,9 @@ namespace FoodAppUILayer.Controllers
         {
 
             var rest = restaurantRepository.GetAllRestaurants();
-          
+            var top5orders = orderRepository.GetTop5OrdersByFoodId();
+            ViewBag.Top5Orders = top5orders;
+
             var restaurantModel = rest.Select(MapToViewModel).ToList();
 
             return View(restaurantModel);
@@ -272,6 +274,8 @@ namespace FoodAppUILayer.Controllers
                         PostalCode = address.PostalCode,
                         State = address.State,
                         Country = address.Country,
+                        Longitude = address.Longitude,
+                        Latitude = address.Latitude,
                     }).ToList();
                 }
                 var order = new OrderViewModel
@@ -409,7 +413,7 @@ namespace FoodAppUILayer.Controllers
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine(model.UserId);
+               
                 var user = userRepository.GetUserById(model.UserId);
                 if (user == null)
                 {
@@ -441,5 +445,42 @@ namespace FoodAppUILayer.Controllers
             return View(model);
         }
 
+        public ActionResult OrderByUser()
+        {
+            int userid = Convert.ToInt32(Session["UserId"]);
+            var orders = orderRepository.GetOrderByUserId(userid);
+            var orderModel = orders.Select(MapToViewModel).ToList();
+            return View(orderModel);
+        }
+       
+        private Order MapToViewModel(Order ord)
+        {
+            return new Order
+            {
+             OrderId = ord.OrderId,
+             FoodId = ord.FoodId,
+             FoodItem = ord.FoodItem,
+             OrderStatus = ord.OrderStatus,
+             DateOfOrder = ord.DateOfOrder,
+             DeliveryAddress = ord.DeliveryAddress,
+             TotalAmount = ord.TotalAmount,
+            };
+        }
+
+
+        public ActionResult DeleteOrder(int id)
+        {
+
+            Order orderDelet = orderRepository.GetOrderById(id);
+            if (orderDelet != null)
+            {
+
+                orderRepository.DeleteOrder(id);
+                orderRepository.Save();
+                TempData["DeleteMsg"] = "Order Canceled";
+            }
+            
+            return RedirectToAction("OrderByUser");
+        }
     }
 }

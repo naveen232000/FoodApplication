@@ -37,6 +37,7 @@
                     <li>@Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
 
                     <li>@Html.ActionLink("My Cart", "ViewCart", "User", new { userId = @Session["UserId"] }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("My Orders", "OrderByUser", "User", new { userId = @Session["UserId"] }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
 

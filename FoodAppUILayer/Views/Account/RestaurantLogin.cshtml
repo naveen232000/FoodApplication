@@ -1,48 +1,59 @@
-﻿@model  FoodAppUILayer.Models.RestaurantViewModel
+﻿@model FoodAppUILayer.Models.RestaurantViewModel
 @{
     ViewBag.Title = "RestaurantLogin";
 }
 
-<h2>RestaurantLogin</h2>
+<div class="container mt-3 d-flex justify-content-center align-items-center" style="background-image: url('@Url.Content("~/Images/restrauntlogin.jpg")'); background-size: cover; height: 100vh;">
+  
+    <div class="text-center">
 
-<div class=" container col-6 pt-2 " style="margin-left:390px">
-    <h2 class="p-3 ms-5">Restaurant Login</h2>
+    </div>
     <p class="text-success">@TempData["SuccessMessage"]</p>
+
     @using (Html.BeginForm("RestaurantLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="text-center">
+            <h1 class="text-white text-center">Welcome!</h1>
 
-        <div class="form-group">
-            <div class="col-12">
-                @Html.LabelFor(m => m.UserName, "Enter Username :", new { @class = "control-label " })
-            </div>
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.UserName)
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-12">
-                @Html.LabelFor(m => m.Password, "Enter Password :", new { @class = "control-label " })
-            </div>
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
-        </div>
+            <h2 class="text-white text-center">Restaurant Login</h2>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-outline-primary">Login</button>
-               <p>*Note: UserName is your EmailId &amp; PassWord Is your RestaurantId</p>
+            <div class="form-group text-center">
+                <div style="font-weight: bold;">
+                    @Html.LabelFor(m => m.UserName, "Enter Username:", new { @class = "control-label" })
+                </div>
+
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div style="font-weight: bold;">
+                    @Html.LabelFor(m => m.Password, "Enter Password:", new { @class = "control-label" })
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn  btn-success mt-3">Login</button>
+                    <p class="text-danger">*Note: UserName is your EmailId &amp; PassWord Is your RestaurantId</p>
+                </div>
             </div>
         </div>
     }
-
 </div>
+
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

@@ -312,6 +312,10 @@
     <Compile Include="Migrations\202403091256227_Added Rating food id.designer.cs">
       <DependentUpon>202403091256227_Added Rating food id.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403100408255_added lat and long in addrs.cs" />
+    <Compile Include="Migrations\202403100408255_added lat and long in addrs.designer.cs">
+      <DependentUpon>202403100408255_added lat and long in addrs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403091256227_Added Rating food id.resx">
       <DependentUpon>202403091256227_Added Rating food id.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403100408255_added lat and long in addrs.resx">
+      <DependentUpon>202403100408255_added lat and long in addrs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

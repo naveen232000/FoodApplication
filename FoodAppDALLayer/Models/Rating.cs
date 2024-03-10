@@ -22,8 +22,9 @@ namespace FoodAppDALLayer.Models
 
 
         [Required(ErrorMessage = "Comments are required.")]
+        [MaxLength(250)]
         public string Comments { get; set; }
-
+        
         public int RatingCount { get; set; }
     }
 }

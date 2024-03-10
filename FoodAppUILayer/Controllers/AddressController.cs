@@ -48,7 +48,9 @@ namespace FoodAppUILayer.Controllers
                     City = address.City,
                     PostalCode = address.PostalCode,
                     Country = address.Country,
-                    UserId = customerId
+                    UserId = customerId,
+                    Latitude=address.Latitude,
+                    Longitude=address.Longitude
                 };
 
                

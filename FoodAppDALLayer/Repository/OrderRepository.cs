@@ -21,9 +21,21 @@ namespace FoodAppDALLayer.Repository
 
         public IEnumerable<Order> GetAllOrders()
         {
-            return _context.Orders.ToList();
+            return _context.Orders.Include(r => r.FoodItem).ToList();
         }
+        public IEnumerable<Order> GetTop5OrdersByFoodId()
+        {
+            var top5Orders = _context.Orders
+                                 .GroupBy(o => o.FoodId)
+                                 .SelectMany(group => group.OrderByDescending(o => group.Count()).Take(5))
+                                 .Include(r => r.FoodItem)
+                                 .ToList();
 
+         
+            var distinctTop5Orders = top5Orders.GroupBy(o => o.FoodId).Select(g => g.First()).ToList();
+
+            return distinctTop5Orders;
+        }
         public Order GetOrderById(int id)
         {
             return _context.Orders.Find(id);

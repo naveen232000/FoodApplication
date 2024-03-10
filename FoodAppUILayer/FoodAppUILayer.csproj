@@ -325,6 +325,7 @@
     <Content Include="Images\5.png" />
     <Content Include="Images\6.png" />
     <Content Include="Images\7.png" />
+    <Content Include="Images\abstract-3d-geometrical-squares-banner-3d-render-concept-illustration.jpg" />
     <Content Include="Images\food-delivery.png" />
     <Content Include="Images\futuristic-abstract-background-with-circular-shapes.jpg" />
     <Content Include="Images\Img1.jpg" />
@@ -332,6 +333,7 @@
     <Content Include="Images\Img3.jpg" />
     <Content Include="Images\Img4.jpg" />
     <Content Include="Images\Img5.jpg" />
+    <Content Include="Images\restrauntlogin.jpg" />
     <Content Include="Images\success.png" />
     <Content Include="Images\userlogin.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -401,6 +403,7 @@
     <Content Include="Views\Rating\AddRatings.cshtml" />
     <Content Include="Views\Rating\ThankYou.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\OrderByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
