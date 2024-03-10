@@ -8,11 +8,9 @@ namespace FoodAppDALLayer.Models
         [Key, Required]
         public int RatingId { get; set; }
 
-        [Required(ErrorMessage = "User ID is required.")]
-        public int FoodId { get; set; }
+        [Required(ErrorMessage = "order ID is required.")]
+        public int OrderId { get; set; }
 
-        [ForeignKey("FoodId")]
-        public virtual FoodItem FoodItem { get; set; }
 
         [Required(ErrorMessage = "User ID is required.")]
         public int UserId { get; set; }

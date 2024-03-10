@@ -282,6 +282,8 @@ namespace FoodAppUILayer.Controllers
             {
               UserId = id,
               UserName=user.UserName,
+              FirstName=user.FirstName,
+              LastName=user.LastName,
               Email=user.Email,
               Mobile=user.Mobile,
               Password=user.Password,
@@ -308,6 +310,8 @@ namespace FoodAppUILayer.Controllers
                 user.UserName = model.UserName;
                 user.Email = model.Email;
                 user.Mobile = model.Mobile;
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
              
                 user.RoleId=model.RoleId;
                 try
@@ -407,9 +411,26 @@ namespace FoodAppUILayer.Controllers
               UserId=order.UserId,
           };
         }
+        public ActionResult EditOrder(int oderId)
+        {
+            var ordersRepo = orderRepository.GetOrderById(oderId);
+           
+            return View(ordersRepo);
 
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditOrder(Order model)
+        {
+            var orders1 = orderRepository.GetOrderById(model.OrderId);
+          orders1.OrderStatus = model.OrderStatus;
+            orders1.PaymentStatus = model.PaymentStatus;
+            orderRepository.UpdateOrder(orders1);
+            orderRepository.Save();
+            return RedirectToAction("AllOrders");
+        }
         //Ratings
-        
+
         public ActionResult AllRating()
         {
             var ratingRepo = ratingRepository.GetAllRatings(); 
@@ -424,6 +445,7 @@ namespace FoodAppUILayer.Controllers
            RatingId = rating.RatingId,
            RatingCount = rating.RatingCount,
            Comments = rating.Comments,
+           OrderId = rating.OrderId,
        
      
            UserId = rating.UserId,

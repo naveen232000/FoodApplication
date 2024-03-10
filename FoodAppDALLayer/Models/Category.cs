@@ -13,7 +13,7 @@ namespace FoodAppDALLayer.Models
         public int CategoryId { get; set; }
 
         [Index(IsUnique = true)]
-        [MaxLength(255)]
+        [MaxLength(50)]
         public string CategoryName { get; set; }
 
         // Navigation property

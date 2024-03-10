@@ -77,9 +77,9 @@
         for (i = 0; i < cities.length; i++) {
             txtValue = cities[i].textContent || cities[i].innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                cities[i].closest('.row').style.display = ""; // Show the parent row
+                cities[i].closest('.row').style.display = ""; 
             } else {
-                cities[i].closest('.row').style.display = "none"; // Hide the parent row
+                cities[i].closest('.row').style.display = "none"; 
             }
         }
     }

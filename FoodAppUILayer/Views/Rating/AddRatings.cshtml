@@ -19,7 +19,7 @@
         @Html.HiddenFor(model => model.UserId, new { Value = @Session["UserId"] })
 
 
-        @Html.HiddenFor(model => model.FoodId, new { Value = ViewBag.FoodId })
+        @Html.HiddenFor(model => model.OrderId, new { Value = ViewBag.orderid })
 
         <div class="form-group">
             @Html.LabelFor(model => model.Comments, htmlAttributes: new { @class = "control-label col-md-2" })

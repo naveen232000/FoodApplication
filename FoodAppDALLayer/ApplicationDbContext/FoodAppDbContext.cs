@@ -28,7 +28,11 @@ namespace FoodAppDALLayer.ApplicationDbContext
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-          
+            modelBuilder.Entity<OrderItem>()
+        .HasRequired(o => o.Order)
+        .WithMany()
+        .HasForeignKey(o => o.OrderId)
+        .WillCascadeOnDelete(true);
 
         }
     }

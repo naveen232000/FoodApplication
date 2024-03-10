@@ -1,0 +1,39 @@
+﻿@model IEnumerable<FoodAppDALLayer.Models.Order>
+
+@{
+    ViewBag.Title = "rest_Orders";
+}
+
+
+<table id="dtBasic" class="table">
+    <thead>
+        <tr>
+            <th>Food Item</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+            <th>Delivery Address</th>
+            <th>Delivery Charge</th>
+            <th>Order Status</th>
+            <th>Estimated Delivery Time</th>
+            <th>Date Of Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FoodItem.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Qty)</td>
+                <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryAddress)</td>
+                <td>@Html.DisplayFor(modelItem => item.DeliveryCharge)</td>
+                <td>@Html.DisplayFor(modelItem => item.OrderStatus)</td>
+                <td>@Html.DisplayFor(modelItem => item.EstimatedDeliveryTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.DateOfOrder)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

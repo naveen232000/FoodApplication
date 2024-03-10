@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using FoodAppDALLayer.ApplicationDbContext;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Net;
+using System.Reflection;
 
 namespace FoodAppUILayer.Controllers
 {
@@ -23,7 +24,7 @@ namespace FoodAppUILayer.Controllers
         {
 
         }
-        //private readonly IWebHostEnvironment _webHostEnvironment;
+  
         private readonly IFoodItemRepository foodItemRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly IRestaurantRepository restaurantRepository;
@@ -42,7 +43,7 @@ namespace FoodAppUILayer.Controllers
             this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             this.addressRepository = addressRepository ?? throw new ArgumentNullException(nameof(addressRepository));
             this.orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(userRepository));
-            ;
+            
         }
 
         public ActionResult AllRestaurant()
@@ -88,7 +89,7 @@ namespace FoodAppUILayer.Controllers
         }
        
 
-        //MapToViewModel for fooditems
+
         private FoodItem MapToViewModel(FoodItem foodItem)
         {
             return new FoodItem
@@ -116,11 +117,24 @@ namespace FoodAppUILayer.Controllers
                 return RedirectToAction("UserLogin", "Account");
             }
             int temp = Convert.ToInt32(userId);
-            var existingCartItem = cartRepository.GetCartItemByfIdUid(foodItemId, temp);
+            var existingCartItems = cartRepository.GetCartItemsByUserId(temp);
+            var foodItems = foodItemRepository.GetFoodItemById(foodItemId);
+            if (existingCartItems.Any())
+            {
+                bool sameRestaurant = existingCartItems.All(item => item.RestId ==foodItems.RestId);
 
+                if (!sameRestaurant)
+                {
+                    TempData["Error"] = "You can only add items from the same restaurant to your cart. Please remove your current cart items before adding items from a new restaurant.";
+                    return RedirectToAction("ViewCart", new { userId = temp }); 
+                }
+            }
+            var existingCartItem = cartRepository.GetCartItemByfIdUid(foodItemId, temp);
+          
+          
             if (existingCartItem != null)
             {
-                // Product already exists in the cart, so update the quantity
+               
                 existingCartItem.Quantity++;
                 cartRepository.Save();
             }
@@ -336,12 +350,13 @@ namespace FoodAppUILayer.Controllers
                 discount = 30;
                 subtotal = subtotal - (subtotal * (discount / 100));
             }
-            // Get the current DateTime
+           
             DateTime now = DateTime.Now;
             
-            // Add 4 hours to the current DateTime
+         
             DateTime estimatedDeliveryTime = now.AddHours(2);
-            // Create a new Order object
+          
+            
             var newOrder = new Order
             {
                 DateOfOrder = now,
@@ -356,13 +371,30 @@ namespace FoodAppUILayer.Controllers
                 Discount = discount,
                 EstimatedDeliveryTime = estimatedDeliveryTime,
                 FoodId= foodItemIds.FirstOrDefault(),
+                
 
             };
             userRepository.Detach(user);
             addressRepository.Detach(address.FirstOrDefault());
             // Save the new Order object to the database
             int orderId = orderRepository.InsertOrder(newOrder);
-          
+            List<OrderItem> orderItems = new List<OrderItem>();
+
+            foreach (var cartItem in cartItems)
+            {
+                orderItems.Add(new OrderItem
+                {
+                    OrderId= orderId,
+                    FoodId = cartItem.FoodId,
+                    Quantity = cartItem.Quantity,
+                    Price = cartItem.Price
+                });
+            }
+
+            var orders1 = orderRepository.GetOrderById(orderId);
+            orders1.OrderItems = orderItems;
+            orderRepository.UpdateOrder(orders1);
+            orderRepository.Save();
 
             // Remove cart items
             foreach (var cartItem in cartItems)
@@ -460,6 +492,7 @@ namespace FoodAppUILayer.Controllers
              OrderId = ord.OrderId,
              FoodId = ord.FoodId,
              FoodItem = ord.FoodItem,
+             OrderItems = ord.OrderItems,
              OrderStatus = ord.OrderStatus,
              DateOfOrder = ord.DateOfOrder,
              DeliveryAddress = ord.DeliveryAddress,

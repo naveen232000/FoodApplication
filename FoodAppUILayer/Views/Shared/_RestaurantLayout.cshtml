@@ -31,8 +31,9 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                   
+
                     <li>@Html.ActionLink("FoodItems", "AllFoodItems", "Restaurant", new { id = @Session["UserId"] }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Orders", "OrderByUser", "Restaurant", new { id = @Session["UserId"] }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Account", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
                 <p class="text-white mt-2">

@@ -24,7 +24,7 @@ namespace FoodAppUILayer.Controllers
 
         public ActionResult AddRatings(int id)
         {
-            ViewBag.FoodId = id;
+            ViewBag.orderid = id;
             return View();
         }
         [HttpPost]
@@ -35,7 +35,7 @@ namespace FoodAppUILayer.Controllers
             Rating rat = new Rating();
             {
                 rat.RatingCount = rating.RatingCount;
-                rat.FoodId = rating.FoodId;
+                rat.RatingId = rating.RatingId;
                 rat.Comments = rating.Comments;
                 rat.UserId = userid;
             };

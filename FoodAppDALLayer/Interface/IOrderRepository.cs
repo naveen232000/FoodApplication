@@ -12,6 +12,7 @@ namespace FoodAppDALLayer.Interface
         IEnumerable<Order> GetAllOrders();
         IEnumerable<Order> GetTop5OrdersByFoodId();
         Order GetOrderById(int id);
+        IEnumerable<Order> GetOrderByRestId(int id);
         IEnumerable<Order> GetOrderByodId(int id);
         int GetOrderCountByUserId(int id);
         IEnumerable<Order> GetOrderByUserId(int id);

@@ -26,7 +26,7 @@ namespace FoodAppDALLayer.Repository
         public IEnumerable<Order> GetTop5OrdersByFoodId()
         {
             var top5Orders = _context.Orders
-                                 .GroupBy(o => o.FoodId)
+                                 .GroupBy(o => o.FoodItem)
                                  .SelectMany(group => group.OrderByDescending(o => group.Count()).Take(5))
                                  .Include(r => r.FoodItem)
                                  .ToList();
@@ -43,6 +43,11 @@ namespace FoodAppDALLayer.Repository
         public IEnumerable<Order> GetOrderByodId(int id)
         {
             var item = _context.Orders.Include(r => r.FoodItem).Where(a => a.OrderId == id);
+            return item;
+        }
+        public IEnumerable<Order> GetOrderByRestId(int id)
+        {
+            var item = _context.Orders.Include(r => r.FoodItem).Where(a => a.FoodItem.RestId == id);
             return item;
         }
         public IEnumerable<Order> GetOrderByUserId(int id)

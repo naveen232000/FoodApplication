@@ -1,50 +1,57 @@
-﻿@model  FoodAppUILayer.Models.LoginViewModel
+﻿@model FoodAppUILayer.Models.LoginViewModel
+@using CaptchaMvc.HtmlHelpers
 
 @{
     ViewBag.Title = "AdminLogin";
 }
 
-
-
-<div class=" container col-6 pt-2 " style="margin-left:390px">
-    <h2 class="p-3 ms-5">Admin Login</h2>
-    <p class="text-success">@TempData["SuccessMessage"]</p>
-    @using (Html.BeginForm("AdminLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        @Html.AntiForgeryToken()
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <div class="form-group">
-            <div class="col-12">
-                @Html.LabelFor(m => m.UserName, "Enter Username :", new { @class = "control-label " })
-            </div>
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.UserName)
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col">
+            <div class="row justify-content-end align-items-center" style="height: 100vh; background-image: url('@Url.Content("~/Images/adminlogin.jpg")'); background-size: cover;">
+                <div class="col m-4 w-100 h-100">
+                    <div class="col-12 text-black">
+                        <h1>Welcome!</h1>
+                    </div>
+                </div>
+                <div class="col mt-4 mb-4 text-black">
+                    <h2>Admin Login</h2>
+                    @using (Html.BeginForm("AdminLogin", "Account", FormMethod.Post, new { @class = "col-md-6" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-horizontal text-black">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <!-- Add a gap after the password textbox -->
+                            <div class="mb-3"></div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button type="submit" class="btn btn-outline-primary">Login</button>
+                                    <a href="@Url.Action("AdminResetPassword", "Account")" class="btn btn-outline-danger">Forgot Password?</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-12">
-                @Html.LabelFor(m => m.Password, "Enter Password :", new { @class = "control-label " })
-            </div>
-            <div class="col-md-10">
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Password)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <button type="submit" class="btn btn-outline-primary">Login</button>
-                <a href="@Url.Action("AdminResetPassword", "Account")" class="btn btn-outline-danger">Forgot Password?</a>
-            </div>
-        </div>
-    }
-
+    </div>
 </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-

@@ -23,13 +23,14 @@ namespace FoodAppUILayer.Controllers
         private readonly IFoodItemRepository foodItemRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly IRestaurantRepository restaurantRepository;
- 
+        private readonly IOrderRepository orderRepository;
 
-        public RestaurantController(IRestaurantRepository restaurantRepository, ICategoryRepository categoryRepository, IFoodItemRepository foodItemRepository)
+        public RestaurantController(IRestaurantRepository restaurantRepository, ICategoryRepository categoryRepository, IFoodItemRepository foodItemRepository, IOrderRepository orderRepository)
         {
             this.foodItemRepository = foodItemRepository ?? throw new ArgumentNullException(nameof(foodItemRepository));
             this.categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
             this.restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(restaurantRepository));
+            this.orderRepository = orderRepository;
         }
 
         public ActionResult AllFoodItems(int id)
@@ -234,8 +235,31 @@ namespace FoodAppUILayer.Controllers
             return RedirectToAction("AllFoodItems");
         }
 
-        
 
+        public ActionResult OrderByUser()
+        {
+            int restid = Convert.ToInt32(Session["UserId"]);
+            var orders = orderRepository.GetOrderByRestId(restid);
+            var orderModel = orders.Select(MapToViewModel).ToList();
+            return View(orderModel);
+        }
+
+        private Order MapToViewModel(Order ord)
+        {
+            return new Order
+            {
+                OrderId = ord.OrderId,
+                FoodId = ord.FoodId,
+                Qty = ord.Qty,
+                EstimatedDeliveryTime = ord.EstimatedDeliveryTime,
+                DeliveryCharge = ord.DeliveryCharge,
+                FoodItem = ord.FoodItem,
+                OrderStatus = ord.OrderStatus,
+                DateOfOrder = ord.DateOfOrder,
+                DeliveryAddress = ord.DeliveryAddress,
+                TotalAmount = ord.TotalAmount,
+            };
+        }
 
 
     }

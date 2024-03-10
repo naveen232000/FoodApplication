@@ -316,6 +316,30 @@
     <Compile Include="Migrations\202403100408255_added lat and long in addrs.designer.cs">
       <DependentUpon>202403100408255_added lat and long in addrs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403100937295_admin password.cs" />
+    <Compile Include="Migrations\202403100937295_admin password.designer.cs">
+      <DependentUpon>202403100937295_admin password.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403101033123_category length50.cs" />
+    <Compile Include="Migrations\202403101033123_category length50.designer.cs">
+      <DependentUpon>202403101033123_category length50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403101236052_rating changs.cs" />
+    <Compile Include="Migrations\202403101236052_rating changs.designer.cs">
+      <DependentUpon>202403101236052_rating changs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403101321458_virtual removed rating.cs" />
+    <Compile Include="Migrations\202403101321458_virtual removed rating.designer.cs">
+      <DependentUpon>202403101321458_virtual removed rating.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403101410046_OrderItems model.cs" />
+    <Compile Include="Migrations\202403101410046_OrderItems model.designer.cs">
+      <DependentUpon>202403101410046_OrderItems model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403101611593_db context changs order.cs" />
+    <Compile Include="Migrations\202403101611593_db context changs order.designer.cs">
+      <DependentUpon>202403101611593_db context changs order.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -323,6 +347,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderItems.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Role.cs" />
@@ -437,6 +462,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403100408255_added lat and long in addrs.resx">
       <DependentUpon>202403100408255_added lat and long in addrs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403100937295_admin password.resx">
+      <DependentUpon>202403100937295_admin password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403101033123_category length50.resx">
+      <DependentUpon>202403101033123_category length50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403101236052_rating changs.resx">
+      <DependentUpon>202403101236052_rating changs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403101321458_virtual removed rating.resx">
+      <DependentUpon>202403101321458_virtual removed rating.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403101410046_OrderItems model.resx">
+      <DependentUpon>202403101410046_OrderItems model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403101611593_db context changs order.resx">
+      <DependentUpon>202403101611593_db context changs order.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

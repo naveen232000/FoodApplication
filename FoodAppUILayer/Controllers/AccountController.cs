@@ -169,14 +169,15 @@ namespace FoodAppUILayer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AdminResetPassword(ResetPasswordViewModel model)
         {
-          
+
             if (ModelState.IsValid)
             {
                 var admin = adminRepository.GetAdminByUserName(model.UserName);
 
                 if (admin == null)
                 {
-                    ModelState.AddModelError(nameof(model.UserName), "Invalid username. Please enter a valid username.");
+                    ModelState.AddModelError(nameof(model.UserName), "Invalid username.");
+
                     return View(model);
                 }
                 else
@@ -184,8 +185,9 @@ namespace FoodAppUILayer.Controllers
                     var passwordHash = new PasswordHasher<Admin>();
                     admin.Password = passwordHash.HashPassword(admin, model.Password);
                     adminRepository.Save();
+                    TempData["SuccessMessage"] = "Password reset successfully. Please log in with your new password.";
                 }
-                TempData["SuccessMessage"] = "Password reset successfully. Please log in with your new password.";
+              
                 return RedirectToAction("AdminLogin", "Account");
             }
             return View(model);

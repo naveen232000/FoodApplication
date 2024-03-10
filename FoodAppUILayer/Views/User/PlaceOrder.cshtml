@@ -37,7 +37,7 @@
         </tbody>
     </table>
 
-    <p>Delivery Charge: &#8377;<span id="deliveryCharge">100</span></p>
+    <p>Delivery Charge: &#8377;<span id="deliveryCharge">30</span></p>
     <p>Total: &#8377;<span id="totalPrice">@Model.TotalAmount</span></p>
     <p>SubTotal: &#8377;<span id="subTotalPrice">@Model.TotalAmount</span></p>
 
@@ -80,8 +80,8 @@
     <input type="hidden" name="subtotal" id="subtotal" value="@Model.TotalAmount" />
     <input type="hidden" name="userId" value="@Model.UserId" />
     <select id="paymentType" name="paymentType" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
-        <option selected>Select Payment Method</option>
-        <option value="COD">COD</option>
+        
+        <option selected="COD">COD</option>
     </select>
     @if (Model.Addresses != null && Model.Addresses.Any())
     {
@@ -96,7 +96,7 @@
             </div>
         }
     }
-    <button type="submit" id="payNowButton" class="btn btn-outline-success">Confirm Order</button>
+    <button type="submit" id="payNowButton" class="btn btn-success mt-3 mb-4">Confirm Order</button>
 </form>
 </div>
 
