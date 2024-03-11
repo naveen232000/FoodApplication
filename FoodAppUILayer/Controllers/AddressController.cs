@@ -32,15 +32,16 @@ namespace FoodAppUILayer.Controllers
             [ValidateAntiForgeryToken]
             public ActionResult SaveAddress(AddressViewModel address)
             {
+           
                 int customerId = (int)Session["UserId"];
                 var UserAddress = AddressRepository.GetAddressesByUserId(customerId);
-            foreach (var item in UserAddress)
-            {
-                AddressRepository.DeleteAddress(item.Id);
-                
-            }
+                foreach (var item in UserAddress)
+                {
+                    AddressRepository.DeleteAddress(item.Id);
 
-            Address saverAddress = new Address
+                }
+
+                Address saverAddress = new Address
                 {
                     Id = address.Id,
                     State = address.State,
@@ -49,14 +50,15 @@ namespace FoodAppUILayer.Controllers
                     PostalCode = address.PostalCode,
                     Country = address.Country,
                     UserId = customerId,
-                    Latitude=address.Latitude,
-                    Longitude=address.Longitude
+                    Latitude = address.Latitude,
+                    Longitude = address.Longitude
                 };
 
-               
+
                 AddressRepository.SaveAddress(saverAddress);
-               
+
                 return RedirectToAction("PlaceOrder", "User", new { cartIds = Convert.ToInt32(null), UserId = customerId });
+           
             }
         }
     }

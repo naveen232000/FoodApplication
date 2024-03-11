@@ -252,7 +252,8 @@ namespace FoodAppUILayer.Controllers
                model.Password= passwordHasher.HashPassword(model, model.Password);
                 // Create a Product entity from the ViewModel
                 User usr = new User
-                {
+                {   FirstName=model.FirstName, 
+                   LastName=model.LastName,
                    UserName = model.UserName,
                    Email = model.Email,
                    Mobile= model.Mobile,

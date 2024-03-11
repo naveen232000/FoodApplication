@@ -30,8 +30,6 @@ namespace FoodAppDALLayer.Repository
                                  .SelectMany(group => group.OrderByDescending(o => group.Count()).Take(4))
                                  .Include(r => r.FoodItem)
                                  .ToList();
-
-         
             var distinctTop5Orders = top5Orders.GroupBy(o => o.FoodId).Select(g => g.First()).ToList();
 
             return distinctTop5Orders;

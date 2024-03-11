@@ -10,7 +10,7 @@ namespace FoodAppDALLayer.Models
         public int RestId { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
-        [StringLength(150, ErrorMessage = "Name cannot exceed 100 characters.")]
+        [StringLength(150, ErrorMessage = "Name cannot exceed 150 characters.")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Address is required.")]

@@ -232,7 +232,7 @@ namespace FoodAppUILayer.Controllers
 
             foodItemRepository.Save();
             TempData["SuccessMessage"] = "FoodItem deleted successfully.";
-            return RedirectToAction("AllFoodItems");
+            return RedirectToAction("AllFoodItems", new {id=foodItem.RestId});
         }
 
 

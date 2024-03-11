@@ -14,6 +14,7 @@ using FoodAppDALLayer.ApplicationDbContext;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Net;
 using System.Reflection;
+using FoodAppDALLayer.Migrations;
 
 namespace FoodAppUILayer.Controllers
 {
@@ -31,10 +32,11 @@ namespace FoodAppUILayer.Controllers
         private readonly ICartRepository cartRepository;
         private readonly IUserRepository userRepository;
         private readonly IAddressRepository addressRepository;
+        private readonly IOrderItemRepository orderItemRepository;
 
         private readonly IOrderRepository orderRepository;
 
-        public UserController(IRestaurantRepository restaurantRepository, ICategoryRepository categoryRepository, IFoodItemRepository foodItemRepository, ICartRepository cartRepository, IUserRepository userRepository, IAddressRepository addressRepository, IOrderRepository orderRepository)
+        public UserController(IRestaurantRepository restaurantRepository, ICategoryRepository categoryRepository, IFoodItemRepository foodItemRepository, ICartRepository cartRepository, IUserRepository userRepository, IAddressRepository addressRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository)
         {
             this.foodItemRepository = foodItemRepository ?? throw new ArgumentNullException(nameof(foodItemRepository));
             this.categoryRepository = categoryRepository ?? throw new ArgumentNullException(nameof(categoryRepository));
@@ -43,7 +45,7 @@ namespace FoodAppUILayer.Controllers
             this.userRepository = userRepository ?? throw new ArgumentNullException(nameof(userRepository));
             this.addressRepository = addressRepository ?? throw new ArgumentNullException(nameof(addressRepository));
             this.orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(userRepository));
-            
+            this.orderItemRepository = orderItemRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
         public ActionResult AllRestaurant()
@@ -78,10 +80,7 @@ namespace FoodAppUILayer.Controllers
         public ActionResult AllFoodItems(int id)
         {
             var foodItem = foodItemRepository.GetFoodItemByRestId(id);
-            if (foodItem == null)
-            {
-                return View("AddFood");
-            }
+          
             var foodItemModel = foodItem.Select(MapToViewModel).ToList();
 
             return View(foodItemModel);
@@ -172,18 +171,16 @@ namespace FoodAppUILayer.Controllers
         }
         public ActionResult ViewCart(int? userId)
         {
-            // Check if customerId is provided and is a valid value
+           
             if (userId == null)
             {
-                // You might want to redirect to a login page or show an error message
+               
                 return RedirectToAction("UserLogin", "Account");
             }
-            var loggedInUserId = (int?)Session["UserId"];
-            // Retrieve cart items for the specified customer
-            
+            //var loggedInUserId = (int?)Session["UserId"];
+    
             var cartItems = cartRepository.GetCartItemsByUserId(userId);
       
-            // Create a list of CartViewModel to pass to the view
             var carViewList = cartItems.Select(item => new Cart
             {
                 CartId = item.CartId,
@@ -230,17 +227,13 @@ namespace FoodAppUILayer.Controllers
         public ActionResult RemoveCartItem(int cartId)
         {
             int userid = Convert.ToInt32(Session["UserId"]);
-            // Ensure the user is logged in
+           
             if (userid == 0)
             {
                 TempData["ErrorMessage"] = "User not logged in.";
                 return RedirectToAction("ViewCart", new { userId = userid });
             }
 
-            // Retrieve the user's ID from the session
-          
-
-            // Find the cart item for the specified cartId and userId
             var cartItem = cartRepository.GetCartItemByCartIdUid(cartId, userid);
 
             if (cartItem == null)
@@ -249,10 +242,7 @@ namespace FoodAppUILayer.Controllers
                 return RedirectToAction("ViewCart", "User", new { userId = userid });
             }
 
-            // Remove the cart item
             cartRepository.DeleteCart(cartItem.CartId);
-
-            // Save changes and check for errors
             cartRepository.Save();
             return RedirectToAction("ViewCart", "User", new { userId = userid });
         }
@@ -279,7 +269,6 @@ namespace FoodAppUILayer.Controllers
 
                 if (UserAddress != null && UserAddress.Any())
                 {
-                    // User has addresses, create the addressModel
                     addressModel = UserAddress.Select(address => new AddressViewModel
                     {
                         Id = address.Id,
@@ -328,7 +317,6 @@ namespace FoodAppUILayer.Controllers
         {
             var sectionaddrs = Session["OrderViewModel"] as OrderViewModel;
             var addresses = sectionaddrs.Addresses;
-            // Retrieve cart items
             var cartItems = cartRepository.GetCartItemsByUserId(userId);
             var user = userRepository.GetUserById(userId);
             var address = addressRepository.GetAddressesById(addresses.First().Id);
@@ -504,15 +492,15 @@ namespace FoodAppUILayer.Controllers
         public ActionResult DeleteOrder(int id)
         {
 
-            Order orderDelet = orderRepository.GetOrderById(id);
-            if (orderDelet != null)
+            Order orderToDelete = orderRepository.GetOrderById(id);
+            if (orderToDelete != null)
             {
-
+              
                 orderRepository.DeleteOrder(id);
                 orderRepository.Save();
                 TempData["DeleteMsg"] = "Order Canceled";
             }
-            
+
             return RedirectToAction("OrderByUser");
         }
     }

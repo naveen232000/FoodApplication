@@ -16,7 +16,7 @@ namespace FoodAppSeviceLayer.Controllers
 
         public UsersController()
         {
-            _context = new FoodAppDbContext(); // Initialize your DbContext
+            _context = new FoodAppDbContext(); 
         }
 
         // GET api/users

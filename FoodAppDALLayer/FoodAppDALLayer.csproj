@@ -187,6 +187,7 @@
     <Compile Include="Interface\ICartRepository.cs" />
     <Compile Include="Interface\ICategoryRepository.cs" />
     <Compile Include="Interface\IFoodItemRepository.cs" />
+    <Compile Include="Interface\IOrderItemRepository.cs" />
     <Compile Include="Interface\IOrderRepository.cs" />
     <Compile Include="Interface\IRatingRepository.cs" />
     <Compile Include="Interface\IRestaurantRepository.cs" />
@@ -340,6 +341,18 @@
     <Compile Include="Migrations\202403101611593_db context changs order.designer.cs">
       <DependentUpon>202403101611593_db context changs order.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403110957433_orders.cs" />
+    <Compile Include="Migrations\202403110957433_orders.designer.cs">
+      <DependentUpon>202403110957433_orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403111025172_final.cs" />
+    <Compile Include="Migrations\202403111025172_final.designer.cs">
+      <DependentUpon>202403111025172_final.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403111115083_final mig.cs" />
+    <Compile Include="Migrations\202403111115083_final mig.designer.cs">
+      <DependentUpon>202403111115083_final mig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -347,7 +360,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\FoodItem.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="Models\OrderItems.cs" />
+    <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Role.cs" />
@@ -358,6 +371,7 @@
     <Compile Include="Repository\CartRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\FoodItemRepository.cs" />
+    <Compile Include="Repository\OrderItemRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\RestaurantRepository.cs" />
@@ -480,6 +494,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403101611593_db context changs order.resx">
       <DependentUpon>202403101611593_db context changs order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403110957433_orders.resx">
+      <DependentUpon>202403110957433_orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403111025172_final.resx">
+      <DependentUpon>202403111025172_final.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403111115083_final mig.resx">
+      <DependentUpon>202403111115083_final mig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
