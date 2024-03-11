@@ -19,11 +19,10 @@ namespace FoodAppTesting
             _restaurant = new Restaurant();
         }
 
-        // Test for RestId
         [Test]
         public void RestId_WithValidValue_PassesValidation()
         {
-            _restaurant.RestId = 1; // Valid RestId
+            _restaurant.RestId = 1; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -33,11 +32,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Name
+     
         [Test]
         public void Name_WithValidValue_PassesValidation()
         {
-            _restaurant.Name = "Restaurant Name"; // Valid Name
+            _restaurant.Name = "Restaurant Name"; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -47,11 +46,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Address
+     
         [Test]
         public void Address_WithValidValue_PassesValidation()
         {
-            _restaurant.Address = "123 Street, City"; // Valid Address
+            _restaurant.Address = "123 Street, City";
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -61,11 +60,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Email
+
         [Test]
         public void Email_WithValidValue_PassesValidation()
         {
-            _restaurant.Email = "restaurant@example.com"; // Valid Email
+            _restaurant.Email = "restaurant@example.com"; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -75,11 +74,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Mobile
+
         [Test]
         public void Mobile_WithValidValue_PassesValidation()
         {
-            _restaurant.Mobile = "1234567890"; // Valid Mobile
+            _restaurant.Mobile = "1234567890"; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -89,11 +88,10 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Latitude
         [Test]
         public void Latitude_WithValidValue_PassesValidation()
         {
-            _restaurant.Latitude = 12.345; // Valid Latitude
+            _restaurant.Latitude = 12.345; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -103,11 +101,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Longitude
+
         [Test]
         public void Longitude_WithValidValue_PassesValidation()
         {
-            _restaurant.Longitude = 67.890; // Valid Longitude
+            _restaurant.Longitude = 67.890; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -117,11 +115,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for City
+    
         [Test]
         public void City_WithValidValue_PassesValidation()
         {
-            _restaurant.City = "City"; // Valid City
+            _restaurant.City = "City"; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();
@@ -131,11 +129,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for RoleId
+
         [Test]
         public void RoleId_WithValidValue_PassesValidation()
         {
-            _restaurant.RoleId = 1; // Valid RoleId
+            _restaurant.RoleId = 1; 
 
             var context = new ValidationContext(_restaurant, null, null);
             var results = new List<ValidationResult>();

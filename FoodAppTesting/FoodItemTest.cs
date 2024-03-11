@@ -19,11 +19,11 @@ namespace FoodAppTesting
             _foodItem = new FoodItem();
         }
 
-        // Test for FoodId
+      
         [Test]
         public void FoodId_WithValidValue_PassesValidation()
         {
-            _foodItem.FoodId = 1; // Valid FoodId
+            _foodItem.FoodId = 1;
 
             var context = new ValidationContext(_foodItem, null, null);
             var results = new List<ValidationResult>();
@@ -33,11 +33,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Name
+   
         [Test]
         public void Name_WithValidValue_PassesValidation()
         {
-            _foodItem.Name = "Food Item"; // Valid Name
+            _foodItem.Name = "Food Item"; 
 
             var context = new ValidationContext(_foodItem, null, null);
             var results = new List<ValidationResult>();
@@ -47,11 +47,11 @@ namespace FoodAppTesting
             Assert.IsTrue(isValid);
         }
 
-        // Test for Description
+     
         [Test]
         public void Description_WithValidValue_PassesValidation()
         {
-            _foodItem.Description = "Description of food item"; // Valid Description
+            _foodItem.Description = "Description of food item"; 
 
             var context = new ValidationContext(_foodItem, null, null);
             var results = new List<ValidationResult>();
@@ -61,11 +61,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for RestId
+   
         [Test]
         public void RestId_WithValidValue_PassesValidation()
         {
-            _foodItem.RestId = 1; // Valid RestId
+            _foodItem.RestId = 1; 
 
             var context = new ValidationContext(_foodItem, null, null);
             var results = new List<ValidationResult>();
@@ -75,11 +75,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Price
+  
         [Test]
         public void Price_WithValidValue_PassesValidation()
         {
-            _foodItem.Price = 10.5m; // Valid Price
+            _foodItem.Price = 10.5m; 
 
             var context = new ValidationContext(_foodItem, null, null);
             var results = new List<ValidationResult>();
@@ -89,11 +89,10 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for CategoryId
         [Test]
         public void CategoryId_WithValidValue_PassesValidation()
         {
-            _foodItem.CategoryId = 1; // Valid CategoryId
+            _foodItem.CategoryId = 1; 
 
             var context = new ValidationContext(_foodItem, null, null);
             var results = new List<ValidationResult>();

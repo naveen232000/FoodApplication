@@ -17,7 +17,7 @@
                 <div class="card h-100 shadow p-3  bg-body rounded">
                     <img src="data:image;base64,@order.FoodItem.Image" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@order.FoodItem.Name   </h5>
+                        <h5 class="card-title">@order.FoodItem.Name  <br /><span style="color: #555; font-size: 16px;"><i class="bi bi-geo-alt-fill"></i> @order.FoodItem.Restaurant.City</span> </h5>
                         <p class="mt-auto d-flex justify-content-between"> <span class="rounded-2 text-danger p-2"><i class="bi bi-tag-fill"></i>Popular </span>
                             <span class="btn btn-success d-flex">Rs @order.FoodItem.Price /-</span> <span class="d-flex  justify-content-end">
                                 @using (Html.BeginForm("AddToCart", "User", FormMethod.Post))

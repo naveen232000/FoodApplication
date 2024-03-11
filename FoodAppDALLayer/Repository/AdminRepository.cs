@@ -52,20 +52,7 @@ namespace FoodAppDALLayer.Repository
         }
         public void Save()
         {
-            try
-            {
                 _context.SaveChanges();
-            }
-            catch (DbEntityValidationException ex)
-            {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        System.Diagnostics.Debug.WriteLine("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
-            }
         }
     }
 }

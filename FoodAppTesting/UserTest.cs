@@ -15,11 +15,11 @@ namespace FoodAppDALLayer.Tests
             _user = new User();
         }
 
-        // Test for UserId
+        
         [Test]
         public void UserId_WithValidValue_PassesValidation()
         {
-            _user.UserId = 1; // Valid UserId
+            _user.UserId = 1; 
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -29,11 +29,11 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for FirstName
+
         [Test]
         public void FirstName_WithValidValue_PassesValidation()
         {
-            _user.FirstName = "John"; // Valid FirstName
+            _user.FirstName = "John"; 
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -43,11 +43,11 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for LastName
+      
         [Test]
         public void LastName_WithValidValue_PassesValidation()
         {
-            _user.LastName = "Doe"; // Valid LastName
+            _user.LastName = "Doe";
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -57,11 +57,10 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for UserName
         [Test]
         public void UserName_WithValidValue_PassesValidation()
         {
-            _user.UserName = "john_doe"; // Valid UserName
+            _user.UserName = "john_doe";
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -71,11 +70,11 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for Email
+       
         [Test]
         public void Email_WithValidValue_PassesValidation()
         {
-            _user.Email = "john@example.com"; // Valid Email
+            _user.Email = "john@example.com";
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -85,11 +84,11 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for Mobile
+  
         [Test]
         public void Mobile_WithValidValue_PassesValidation()
         {
-            _user.Mobile = "1234567890"; // Valid Mobile
+            _user.Mobile = "1234567890";
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -99,11 +98,11 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for Password
+
         [Test]
         public void Password_WithValidValue_PassesValidation()
         {
-            _user.Password = "Password123"; // Valid Password
+            _user.Password = "Password123"; 
 
             var context = new ValidationContext(_user, null, null);
             var results = new List<ValidationResult>();
@@ -113,7 +112,7 @@ namespace FoodAppDALLayer.Tests
             Assert.IsFalse(isValid);
         }
 
-        // Test for RoleId
+
         [Test]
         public void RoleId_WithValidValue_PassesValidation()
         {

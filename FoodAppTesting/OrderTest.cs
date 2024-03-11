@@ -19,11 +19,11 @@ namespace FoodAppTesting
             _order = new Order();
         }
 
-        // Test for OrderId
+       
         [Test]
         public void OrderId_WithValidValue_PassesValidation()
         {
-            _order.OrderId = 1; // Valid OrderId
+            _order.OrderId = 1; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -33,11 +33,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for FoodId
+
         [Test]
         public void FoodId_WithValidValue_PassesValidation()
         {
-            _order.FoodId = 1; // Valid FoodId
+            _order.FoodId = 1; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -47,11 +47,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for UserId
+     
         [Test]
         public void UserId_WithValidValue_PassesValidation()
         {
-            _order.UserId = 1; // Valid UserId
+            _order.UserId = 1;
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -61,11 +61,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Qty
+   
         [Test]
         public void Qty_WithValidValue_PassesValidation()
         {
-            _order.Qty = 2; // Valid Qty
+            _order.Qty = 2; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -75,11 +75,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for TotalAmount
+      
         [Test]
         public void TotalAmount_WithValidValue_PassesValidation()
         {
-            _order.TotalAmount = 10.5m; // Valid TotalAmount
+            _order.TotalAmount = 10.5m; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -89,11 +89,10 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for DeliveryAddress
         [Test]
         public void DeliveryAddress_WithValidValue_PassesValidation()
         {
-            _order.DeliveryAddress = "123 Street, City"; // Valid DeliveryAddress
+            _order.DeliveryAddress = "123 Street, City"; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -103,11 +102,10 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for DeliveryCharge
         [Test]
         public void DeliveryCharge_WithValidValue_PassesValidation()
         {
-            _order.DeliveryCharge = 5.0m; // Valid DeliveryCharge
+            _order.DeliveryCharge = 5.0m;
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -117,11 +115,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for OrderStatus
+    
         [Test]
         public void OrderStatus_WithValidValue_PassesValidation()
         {
-            _order.OrderStatus = "Preparing"; // Valid OrderStatus
+            _order.OrderStatus = "Preparing"; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -131,11 +129,10 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for EstimatedDeliveryTime
         [Test]
         public void EstimatedDeliveryTime_WithValidValue_PassesValidation()
         {
-            _order.EstimatedDeliveryTime = DateTime.Now.AddDays(1); // Valid EstimatedDeliveryTime
+            _order.EstimatedDeliveryTime = DateTime.Now.AddDays(1); 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -145,11 +142,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for DateOfOrder
+  
         [Test]
         public void DateOfOrder_WithValidValue_PassesValidation()
         {
-            _order.DateOfOrder = DateTime.Now; // Valid DateOfOrder
+            _order.DateOfOrder = DateTime.Now; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -159,11 +156,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for PaymentType
+
         [Test]
         public void PaymentType_WithValidValue_PassesValidation()
         {
-            _order.PaymentType = "Credit Card"; // Valid PaymentType
+            _order.PaymentType = "Credit Card"; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -173,11 +170,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for PaymentStatus
+
         [Test]
         public void PaymentStatus_WithValidValue_PassesValidation()
         {
-            _order.PaymentStatus = "Pending"; // Valid PaymentStatus
+            _order.PaymentStatus = "Pending"; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();
@@ -187,11 +184,10 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Discount
         [Test]
         public void Discount_WithValidValue_PassesValidation()
         {
-            _order.Discount = 5.0m; // Valid Discount
+            _order.Discount = 5.0m; 
 
             var context = new ValidationContext(_order, null, null);
             var results = new List<ValidationResult>();

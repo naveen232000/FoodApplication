@@ -61,7 +61,7 @@ namespace FoodAppDALLayer.Repository
         public int InsertOrder(Order order)
         {
             _context.Orders.Add(order);
-            _context.SaveChanges(); // Save changes to generate the order ID
+            _context.SaveChanges(); 
             return order.OrderId;
         }
 

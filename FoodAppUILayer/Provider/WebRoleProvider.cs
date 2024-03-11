@@ -55,7 +55,7 @@ namespace FoodAppUILayer.Provider
                          where rest.Email == username
                          select role.Name;
             }
-            // Check if the user, then check in the Admins table
+         
             if (!result.Any())
             {
                 result = from admin in context.Admins
@@ -65,7 +65,7 @@ namespace FoodAppUILayer.Provider
             }
 
             return result.ToArray();
-            //throw new NotImplementedException();
+        
         }
 
         public override string[] GetUsersInRole(string roleName)

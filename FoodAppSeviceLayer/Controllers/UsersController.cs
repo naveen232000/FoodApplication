@@ -19,13 +19,12 @@ namespace FoodAppSeviceLayer.Controllers
             _context = new FoodAppDbContext(); 
         }
 
-        // GET api/users
+      
         public IEnumerable<User> GetUser()
         {
             return _context.Users.ToList();
         }
 
-        // GET api/users/{id}
         public IHttpActionResult GetUser(int id)
         {
             var user = _context.Users.Find(id);
@@ -34,7 +33,6 @@ namespace FoodAppSeviceLayer.Controllers
             return Ok(user);
         }
 
-        // PUT api/users/{id}
         public IHttpActionResult PutUser(int id, User user)
         {
             if (!ModelState.IsValid)
@@ -48,7 +46,6 @@ namespace FoodAppSeviceLayer.Controllers
             return Ok(user);
         }
 
-        // POST api/users
         public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
@@ -59,7 +56,7 @@ namespace FoodAppSeviceLayer.Controllers
             return CreatedAtRoute("DefaultApi", new { id = user.UserId }, user);
         }
 
-        // DELETE api/users/{id}
+
         public IHttpActionResult DeleteUser(int id)
         {
             var user = _context.Users.Find(id);

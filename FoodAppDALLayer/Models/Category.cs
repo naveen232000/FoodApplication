@@ -16,7 +16,6 @@ namespace FoodAppDALLayer.Models
         [MaxLength(50)]
         public string CategoryName { get; set; }
 
-        // Navigation property
         public ICollection<FoodItem> FoodItems { get; set; }
     }
 }

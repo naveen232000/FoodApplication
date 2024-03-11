@@ -16,7 +16,7 @@ namespace FoodAppDALLayer.Service
 
         public static bool VerifyAdminCredentials(string username, string password)
         {
-            // Your logic to check username and password in the database
+            
             var admin = context.Admins.FirstOrDefault(a => a.UserName == username);
 
             if (admin != null)
@@ -26,15 +26,15 @@ namespace FoodAppDALLayer.Service
 
                 if (result == PasswordVerificationResult.Success)
                 {
-                    return true; // Username and password are correct
+                    return true; 
                 }
             }
 
-            return false; // Invalid username or password
+            return false; 
         }
         public static bool VerifyUserCredentials(string username, string password)
         {
-            // Your logic to check username and password in the database
+           
             var user = context.Users.FirstOrDefault(a => a.UserName == username);
 
             if (user != null)
@@ -44,26 +44,26 @@ namespace FoodAppDALLayer.Service
 
                 if (result == PasswordVerificationResult.Success)
                 {
-                    return true; // Username and password are correct
+                    return true; 
                 }
             }
 
-            return false; // Invalid username or password
+            return false; 
         }
 
         public static bool VerifyRestaurantCredentials(int id, string Email)
         {
-            // Your logic to check username and password in the database
+           
             var rest = context.Restaurants.FirstOrDefault(a => a.RestId == id && a.Email==Email);
 
             if (rest != null)
             {
                 
-                    return true; // Username and password are correct
+                    return true; 
             
             }
 
-            return false; // Invalid username or password
+            return false; 
         }
     }
 }

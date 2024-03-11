@@ -19,16 +19,15 @@ namespace FoodAppSeviceLayer.Controllers
 
         public RestaurantsController()
         {
-            _context = new FoodAppDbContext(); // Initialize DbContext
+            _context = new FoodAppDbContext();
         }
 
-        // GET api/Restaurants
+    
         public IEnumerable<Restaurant> GetRestaurant()
         {
             return _context.Restaurants.ToList();
         }
 
-        // GET api/Restaurants/{id}
         public IHttpActionResult GetRestaurant(int id)
         {
             var restaurant = _context.Restaurants.Find(id);
@@ -37,7 +36,7 @@ namespace FoodAppSeviceLayer.Controllers
             return Ok(restaurant);
         }
 
-        // PUT api/Restaurants/{id}
+
         public IHttpActionResult PutRestaurant(int id, Restaurant restaurant)
         {
             if (!ModelState.IsValid)
@@ -51,7 +50,7 @@ namespace FoodAppSeviceLayer.Controllers
             return Ok(restaurant);
         }
 
-        // POST api/Restaurants
+    
         public IHttpActionResult PostRestaurant(Restaurant restaurant)
         {
             if (!ModelState.IsValid)
@@ -62,7 +61,7 @@ namespace FoodAppSeviceLayer.Controllers
             return CreatedAtRoute("DefaultApi", new { id = restaurant.RestId }, restaurant);
         }
 
-        // DELETE api/Restaurants/{id}
+
         public IHttpActionResult DeleteRestaurant(int id)
         {
             var restaurant = _context.Restaurants.Find(id);

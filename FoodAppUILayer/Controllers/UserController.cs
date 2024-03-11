@@ -147,7 +147,6 @@ namespace FoodAppUILayer.Controllers
                     return RedirectToAction("AllRestaurant");
                 }
 
-            
 
                 var addTocart = new Cart
                 {
@@ -177,8 +176,7 @@ namespace FoodAppUILayer.Controllers
                
                 return RedirectToAction("UserLogin", "Account");
             }
-            //var loggedInUserId = (int?)Session["UserId"];
-    
+            
             var cartItems = cartRepository.GetCartItemsByUserId(userId);
       
             var carViewList = cartItems.Select(item => new Cart
@@ -212,7 +210,6 @@ namespace FoodAppUILayer.Controllers
 
             if (cartItem != null)
             {
-                // Update the quantity
                 cartItem.Quantity = newQuantity;
 
                 cartRepository.Save();
@@ -364,7 +361,7 @@ namespace FoodAppUILayer.Controllers
             };
             userRepository.Detach(user);
             addressRepository.Detach(address.FirstOrDefault());
-            // Save the new Order object to the database
+       
             int orderId = orderRepository.InsertOrder(newOrder);
             List<OrderItem> orderItems = new List<OrderItem>();
 

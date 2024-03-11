@@ -98,7 +98,7 @@
 
 <script>
 $(document).ready(function() {
-    var defaultImage = 'data:image;base64,@Model.Image'; // Default image URL
+    var defaultImage = 'data:image;base64,@Model.Image';
 
     $('#imageInput').change(function() {
         if (this.files && this.files[0]) {
@@ -108,7 +108,7 @@ $(document).ready(function() {
             }
             reader.readAsDataURL(this.files[0]);
         } else {
-            $('#imagePreview').attr('src', defaultImage); // Use default image if no file is selected
+            $('#imagePreview').attr('src', defaultImage); 
         }
     });
 });

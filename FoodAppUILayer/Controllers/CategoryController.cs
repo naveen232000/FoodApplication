@@ -50,7 +50,7 @@ namespace FoodAppUILayer.Controllers
             {
                 if (!_categoryRepository.CategoryExists(category.CategoryName))
                 {
-                    // If it doesn't exist, proceed to add the new category
+                  
                     Category categoryToSave = new Category
                     {
                         CategoryName = category.CategoryName
@@ -60,7 +60,6 @@ namespace FoodAppUILayer.Controllers
                 }
                 else
                 {
-                    // Handle the case where the category already exists (e.g., show an error message)
                     ModelState.AddModelError("CategoryName", "Category with this name already exists.");
                     return View(category);
                 }
@@ -70,16 +69,12 @@ namespace FoodAppUILayer.Controllers
         [HttpGet]
         public ActionResult EditCategory(int id)
         {
-            // Retrieve the category from the repository based on the id
             Category category = _categoryRepository.GetCategoryById(id);
      
-            // Check if the category exists
             if (category == null)
             {
-                return HttpNotFound(); // Handle the case where the category is not found
+                return HttpNotFound(); 
             }
-
-            // Map the Category model to the CategoryModel if needed
             CategoryViewModel categoryModelView = new CategoryViewModel
             {
                 CategoryId = category.CategoryId,
@@ -94,34 +89,28 @@ namespace FoodAppUILayer.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Retrieve the existing category from the repository
                 Category existingCategory = _categoryRepository.GetCategoryById(categoryViewModel.CategoryId);
 
-                // Check if the category exists
                 if (existingCategory == null)
                 {
-                    return HttpNotFound(); // Handle the case where the category is not found
+                    return HttpNotFound(); 
                 }
 
 
                 if (_categoryRepository.CategoryExists(categoryViewModel.CategoryName, categoryViewModel.CategoryId))
                 {
-                    // Update the properties of the existing category
                     existingCategory.CategoryName = categoryViewModel.CategoryName;
 
-                    // Save the changes to the repository
                     _categoryRepository.UpdateCategory(existingCategory);
 
-                    return RedirectToAction("Index"); // Redirect to the category list or another appropriate action
+                    return RedirectToAction("Index"); 
                 }
                 else
                 {
-                    // Handle the case where the category already exists (e.g., show an error message)
                     ModelState.AddModelError("CategoryName", "Category with this name already exists.");
                 }
             }
 
-            // If the model state is not valid, redisplay the edit view
             return View("EditCategory", categoryViewModel);
         }
 

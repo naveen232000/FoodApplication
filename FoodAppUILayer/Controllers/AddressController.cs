@@ -16,8 +16,6 @@ namespace FoodAppUILayer.Controllers
         {
             private IAddressRepository AddressRepository;
 
-
-        // GET: Address
         public AddressController(IAddressRepository addressRepository)
             {
                 AddressRepository = addressRepository;

@@ -14,10 +14,7 @@ namespace FoodAppUILayer.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        public AdminController()
-        {
-
-        }
+    
         private readonly IRatingRepository ratingRepository;
         private readonly IUserRepository userRepository;
         private readonly IRestaurantRepository restaurantRepository;
@@ -32,7 +29,7 @@ namespace FoodAppUILayer.Controllers
             this.orderRepository = orderRepository ?? throw new ArgumentNullException(nameof(orderRepository));
             this.foodItemRepository = foodItemRepository;
         }
-        // GET: Admin
+        //Admin
         public ActionResult Index()
         {
 
@@ -82,13 +79,11 @@ namespace FoodAppUILayer.Controllers
                             using (var memoryStream = new MemoryStream())
                             {
                                 filestream.CopyTo(memoryStream);
-                                // Convert byte array to Base64 String
                                 model.Image = Convert.ToBase64String(memoryStream.ToArray());
                             }
                         }
                     }
 
-                    // Create a Product entity from the ViewModel
                     Restaurant rest = new Restaurant
                 {
                     Name = model.Name,
@@ -103,11 +98,10 @@ namespace FoodAppUILayer.Controllers
 
                 };
 
-                // Add the product to the database
                 restaurantRepository.InsertRestaurant(rest);
                 restaurantRepository.Save();
 
-                return RedirectToAction("AllRestaurant"); // Redirect to the product list page
+                return RedirectToAction("AllRestaurant"); 
             }
 
             return View(model);
@@ -250,7 +244,7 @@ namespace FoodAppUILayer.Controllers
             {
                 var passwordHasher = new PasswordHasher<User>();
                model.Password= passwordHasher.HashPassword(model, model.Password);
-                // Create a Product entity from the ViewModel
+           
                 User usr = new User
                 {   FirstName=model.FirstName, 
                    LastName=model.LastName,
@@ -261,11 +255,10 @@ namespace FoodAppUILayer.Controllers
                    RoleId=2
                 };
 
-                // Add the product to the database
                 userRepository.InsertUser(usr);
                 userRepository.Save();
 
-                return RedirectToAction("AllUsers"); // Redirect to the product list page
+                return RedirectToAction("AllUsers");
             }
 
             return View(model);

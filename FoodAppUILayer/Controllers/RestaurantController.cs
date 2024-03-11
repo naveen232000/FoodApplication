@@ -83,7 +83,7 @@ namespace FoodAppUILayer.Controllers
                         using (var memoryStream = new MemoryStream())
                         {
                             filestream.CopyTo(memoryStream);
-                            // Convert byte array to Base64 String
+                     
                             model.Image = Convert.ToBase64String(memoryStream.ToArray());
                         }
                     }
@@ -110,7 +110,7 @@ namespace FoodAppUILayer.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "Error occurred while saving data: " + ex.Message);
-                    // Log the exception for debugging purposes
+                   
                 }
 
                 return View(model);
@@ -158,7 +158,7 @@ namespace FoodAppUILayer.Controllers
                         using (var memoryStream = new MemoryStream())
                         {
                             filestream.CopyTo(memoryStream);
-                            // Convert byte array to Base64 String
+                           
                             model.Image = Convert.ToBase64String(memoryStream.ToArray());
                         }
                     }

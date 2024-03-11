@@ -42,7 +42,7 @@ namespace FoodAppUILayer.Controllers
         [HttpPost]
         public ActionResult UserLogin(LoginViewModel loginView)
         {
-            // Check if the CAPTCHA is valid.
+        
             if (!this.IsCaptchaValid("Captcha is not valid"))
             {
                 ModelState.AddModelError(string.Empty, "Captcha is not valid");
@@ -101,7 +101,7 @@ namespace FoodAppUILayer.Controllers
         }
         [HttpPost]
         public ActionResult RegisterUser(User model)
-        { // Check if the CAPTCHA is valid.
+        { 
             if (!this.IsCaptchaValid("Captcha is not valid"))
             {
                 ModelState.AddModelError(string.Empty, "Captcha is not valid");

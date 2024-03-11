@@ -17,16 +17,16 @@ namespace FoodAppSeviceLayer.Controllers
 
         public AdminsController()
         {
-            _context = new FoodAppDbContext(); // Initialize DbContext
+            _context = new FoodAppDbContext(); 
         }
 
-        // GET api/admins
+      
         public IEnumerable<Admin> GetAdmin()
         {
             return _context.Admins.ToList();
         }
 
-        // GET api/products/{id}
+   
         public IHttpActionResult GetAdmin(int id)
         {
             var admin = _context.Admins.Find(id);
@@ -35,7 +35,7 @@ namespace FoodAppSeviceLayer.Controllers
             return Ok(admin);
         }
 
-        // PUT api/admins/{id}
+ 
         public IHttpActionResult PutAdmin(int id, Admin admin)
         {
             if (!ModelState.IsValid)
@@ -49,7 +49,7 @@ namespace FoodAppSeviceLayer.Controllers
             return Ok(admin);
         }
 
-        // POST api/admins
+
         public IHttpActionResult PostAdmin(Admin admin)
         {
             if (!ModelState.IsValid)
@@ -60,7 +60,6 @@ namespace FoodAppSeviceLayer.Controllers
             return CreatedAtRoute("DefaultApi", new { id = admin.Id }, admin);
         }
 
-        // DELETE api/admins/{id}
         public IHttpActionResult DeleteAdmin(int id)
         {
             var admin = _context.Admins.Find(id);

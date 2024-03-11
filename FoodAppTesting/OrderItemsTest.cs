@@ -19,11 +19,11 @@ namespace FoodAppTesting
             _orderItem = new OrderItem();
         }
 
-        // Test for OrderItemId
+      
         [Test]
         public void OrderItemId_WithValidValue_PassesValidation()
         {
-            _orderItem.OrderItemId = 1; // Valid OrderItemId
+            _orderItem.OrderItemId = 1; 
 
             var context = new ValidationContext(_orderItem, null, null);
             var results = new List<ValidationResult>();
@@ -33,11 +33,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for OrderId
+
         [Test]
         public void OrderId_WithValidValue_PassesValidation()
         {
-            _orderItem.OrderId = 1; // Valid OrderId
+            _orderItem.OrderId = 1; 
 
             var context = new ValidationContext(_orderItem, null, null);
             var results = new List<ValidationResult>();
@@ -47,11 +47,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for FoodId
+  
         [Test]
         public void FoodId_WithValidValue_PassesValidation()
         {
-            _orderItem.FoodId = 1; // Valid FoodId
+            _orderItem.FoodId = 1; 
 
             var context = new ValidationContext(_orderItem, null, null);
             var results = new List<ValidationResult>();
@@ -61,11 +61,11 @@ namespace FoodAppTesting
             Assert.IsFalse(isValid);
         }
 
-        // Test for Quantity
+    
         [Test]
         public void Quantity_WithValidValue_PassesValidation()
         {
-            _orderItem.Quantity = 2; // Valid Quantity
+            _orderItem.Quantity = 2;
 
             var context = new ValidationContext(_orderItem, null, null);
             var results = new List<ValidationResult>();
@@ -75,11 +75,11 @@ namespace FoodAppTesting
             Assert.IsTrue(isValid);
         }
 
-        // Test for Price
+
         [Test]
         public void Price_WithValidValue_PassesValidation()
         {
-            _orderItem.Price = 10.5m; // Valid Price
+            _orderItem.Price = 10.5m; 
 
             var context = new ValidationContext(_orderItem, null, null);
             var results = new List<ValidationResult>();

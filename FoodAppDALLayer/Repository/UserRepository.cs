@@ -45,7 +45,7 @@ namespace FoodAppDALLayer.Repository
         {
             _context.Entry(user).State = EntityState.Modified;
         }
-        //get user by name
+  
         public User GetUserByUserName(string userName)
         {
             return _context.Users.FirstOrDefault(x => x.UserName == userName);
