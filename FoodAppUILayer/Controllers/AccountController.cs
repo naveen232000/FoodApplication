@@ -3,6 +3,7 @@ using FoodAppDALLayer.Interface;
 using FoodAppDALLayer.Models;
 using FoodAppDALLayer.Service;
 using FoodAppUILayer.Models;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,7 @@ namespace FoodAppUILayer.Controllers
             this.restaurantRepository = restaurantRepository ?? throw new ArgumentNullException(nameof(userRepository));
         }
 
-        // GET: Account
-        //User
+     
         public ActionResult UserLogin()
         {
 
@@ -60,7 +60,7 @@ namespace FoodAppUILayer.Controllers
             }
             else
             {
-                // If authentication fails, you may want to show an error message.
+               
                 ModelState.AddModelError(string.Empty, "Invalid username or password");
                 return View(loginView);
             }
@@ -107,11 +107,29 @@ namespace FoodAppUILayer.Controllers
                 ModelState.AddModelError(string.Empty, "Captcha is not valid");
                 return View(model);
             }
+            var user = userRepository.GetUserByUserName(model.UserName);
+            var usermail = userRepository.GetUserByEmail(model.Email);
+            if (user != null)
+            {
+                if (user.UserName == model.UserName)
+                {
+                    ModelState.AddModelError(string.Empty, "UserName Already Exists");
+                    return View(model);
+                }
+            }
+            if (usermail != null)
+            {
+                
+                    ModelState.AddModelError(string.Empty, "Email Already Exists");
+                    return View(model);
+                
+            }
+
             if (ModelState.IsValid)
             {
                 var passwordHasher = new PasswordHasher<User>();
                 model.Password = passwordHasher.HashPassword(model, model.Password);
-                // Create a Product entity from the ViewModel
+             
                 User usr = new User
                 {
                     UserName = model.UserName,
@@ -123,11 +141,11 @@ namespace FoodAppUILayer.Controllers
                     RoleId = 2
                 };
 
-                // Add the product to the database
+               
                 userRepository.InsertUser(usr);
                 userRepository.Save();
 
-                return RedirectToAction("UserLogin"); // Redirect to the product list page
+                return RedirectToAction("UserLogin"); 
             }
 
             return View(model);
@@ -154,7 +172,7 @@ namespace FoodAppUILayer.Controllers
             }
             else
             {
-                // If authentication fails, you may want to show an error message.
+              
                 ModelState.AddModelError(string.Empty, "Invalid username or password");
                 return View(loginView);
             }
@@ -212,7 +230,7 @@ namespace FoodAppUILayer.Controllers
             }
             else
             {
-                // If authentication fails, you may want to show an error message.
+              
                 ModelState.AddModelError(string.Empty, "Invalid username or password");
                 return View(restview);
             }

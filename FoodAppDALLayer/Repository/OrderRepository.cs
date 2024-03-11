@@ -27,7 +27,7 @@ namespace FoodAppDALLayer.Repository
         {
             var top5Orders = _context.Orders
                                  .GroupBy(o => o.FoodItem)
-                                 .SelectMany(group => group.OrderByDescending(o => group.Count()).Take(5))
+                                 .SelectMany(group => group.OrderByDescending(o => group.Count()).Take(4))
                                  .Include(r => r.FoodItem)
                                  .ToList();
 

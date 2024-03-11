@@ -15,6 +15,7 @@ namespace FoodAppDALLayer.Interface
         void DeleteUser(int id);
         void UpdateUser(User user);
         User GetUserByUserName(string userName);
+        User GetUserByEmail(string mailId);
         void Save();
         void Detach(User rest);
     }

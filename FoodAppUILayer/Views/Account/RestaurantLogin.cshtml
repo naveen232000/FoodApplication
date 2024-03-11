@@ -7,9 +7,11 @@
 }
 
 
-<div class="container mt-3" style="background-image: url('@Url.Content("~/Images/restrauntlogin.jpg")'); background-size:cover;">
+<div class="container mt-3" style="background-image: url('@Url.Content("~/Images/futuristic-abstract-background-with-circular-shapes.jpg")'); background-size:cover;">
  
     <div class="row">
+  
+
         <div class="col m-4 w-100 h-100">
             <div class="col-12 text-white">
                 <h1>Welcome!</h1>
@@ -23,12 +25,12 @@
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="">
-                  
+
 
                     <div class="form-group ">
-                        
-                            @Html.LabelFor(m => m.UserName, "Enter Username:", new { @class = "control-label" })
-                       
+
+                        @Html.LabelFor(m => m.UserName, "Enter Username:", new { @class = "control-label" })
+
 
                         <div class="col-md-10">
                             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
@@ -37,9 +39,9 @@
                     </div>
 
                     <div class="form-group">
-                        
-                            @Html.LabelFor(m => m.Password, "Enter Password:", new { @class = "control-label" })
-                      
+
+                        @Html.LabelFor(m => m.Password, "Enter Password:", new { @class = "control-label" })
+
                         <div class="col-md-10">
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })

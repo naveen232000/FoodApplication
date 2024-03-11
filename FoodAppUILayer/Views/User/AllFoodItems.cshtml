@@ -5,7 +5,7 @@
 }
 
 <div class="d-flex justify-content-end">
-    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for category.." style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
+    <input type="text" id="searchInput" onkeyup="myFunction()" placeholder="Search for food.." style="padding: 5px; border-radius: 5px; border: 1px solid #ccc;">
 </div>
 <div class="container" id="myContainer">
 
@@ -16,10 +16,10 @@
                 <div class="card h-100 shadow p-3  bg-body rounded">
                     <img src="data:image;base64,@item.Image" class="card-img-top" alt="..." style="height: 200px; object-fit: cover;">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <h5 class="card-title"><foodname>@Html.DisplayFor(modelItem => item.Name)</foodname></h5>
                         <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
                         <p class="mt-auto d-flex justify-content-between">
-                            <span class="btn btn-success d-flex">Rs @Html.DisplayFor(modelItem => item.Price) /-</span>   <category class="text-secondary d-flex">@Html.DisplayFor(modelItem => item.Category.CategoryName)</category>
+                            <span class="btn btn-success d-flex">Rs @Html.DisplayFor(modelItem => item.Price) /-</span>   <span class="text-secondary d-flex">@Html.DisplayFor(modelItem => item.Category.CategoryName)</span>
                         </p>
 
                         <span class="d-flex  justify-content-end">
@@ -40,17 +40,17 @@
 
 <script>
     function myFunction() {
-        var input, filter, container, categories, i, txtValue;
+        var input, filter, container, foodname, i, txtValue;
         input = document.getElementById('searchInput');
         filter = input.value.toUpperCase();
         container = document.getElementById("myContainer");
-        categories = container.getElementsByTagName('category');
-        for (i = 0; i < categories.length; i++) {
-            txtValue = categories[i].textContent || categories[i].innerText;
+        foodname = container.getElementsByTagName('foodname');
+        for (i = 0; i < foodname.length; i++) {
+            txtValue = foodname[i].textContent || foodname[i].innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                categories[i].closest('.col-lg-4').style.display = ""; // Display the card column
+                foodname[i].closest('.col-lg-4').style.display = ""; 
             } else {
-                categories[i].closest('.col-lg-4').style.display = "none"; // Hide the card column
+                foodname[i].closest('.col-lg-4').style.display = "none"; 
             }
         }
     }

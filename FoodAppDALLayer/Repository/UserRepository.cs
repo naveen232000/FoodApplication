@@ -50,6 +50,10 @@ namespace FoodAppDALLayer.Repository
         {
             return _context.Users.FirstOrDefault(x => x.UserName == userName);
         }
+        public User GetUserByEmail(string mailId)
+        {
+            return _context.Users.FirstOrDefault(x => x.Email == mailId);
+        }
         public void Save()
         {
             _context.SaveChanges();
